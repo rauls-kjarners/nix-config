@@ -11,8 +11,8 @@ keymap l k
 keymap ; l
 
 " 3. Shift the uppercase keys for tab navigation
-bind J tabnext
-bind K tabprev
+bind K tabnext
+bind L tabprev
 
 " Unbind / so Zen can handle it natively for Find in Page
 unbind /
@@ -46,7 +46,3 @@ blacklistadd vim-hero.com
 " --- Search & Hints ---
 " Use left-hand keys for hints to avoid conflicts with our jkl; keymaps on the right hand!
 set hintchars sadfqewcxz
-
-" --- External Editor ---
-" Spawn a fish shell, run Neovim, and then refocus Zen Browser when Neovim closes!
-set editorcmd open -W -n -a Ghostty --args -e /opt/homebrew/bin/fish -lc 'nvim "%f"; open -a Zen'

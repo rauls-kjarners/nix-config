@@ -6,7 +6,7 @@ default:
 
 # Update system and packages
 update:
-	nix flake update ~/Projects/nix-config
+	nix flake update
 	@if [ "$(uname)" = "Darwin" ]; then \
 		darwin-rebuild switch --flake ~/Projects/nix-config#macbook; \
 	elif [ "$(uname)" = "Linux" ]; then \
