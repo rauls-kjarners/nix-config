@@ -1,0 +1,34 @@
+git:
+  pagers:
+    - colorArg: always
+      pager: 'delta --light --paging=never --features=alucard --line-numbers --hyperlinks --hyperlinks-file-link-format="idea://open?file={path}&line={line}"'
+
+gui:
+  showCommandLog: false
+  theme:
+    activeBorderColor:
+      - "#A3144D"
+      - bold
+    inactiveBorderColor:
+      - "#1F1F1F"
+    searchingActiveBorderColor:
+      - "#036A96"
+      - bold
+    optionsTextColor:
+      - "#6C664B"
+    selectedLineBgColor:
+      - "#CFCFDE"
+    inactiveViewSelectedLineBgColor:
+      - bold
+    cherryPickedCommitFgColor:
+      - "#1F1F1F"
+    cherryPickedCommitBgColor:
+      - "#036A96"
+    markedBaseCommitFgColor:
+      - "#036A96"
+    markedBaseCommitBgColor:
+      - "#846E15"
+    unstagedChangesColor:
+      - "#CB3A2A"
+    defaultFgColor:
+      - "#1F1F1F"

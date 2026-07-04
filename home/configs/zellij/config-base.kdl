@@ -1,0 +1,93 @@
+// =============================================================================
+// Zellij config
+// Ergonomic movement: j=left  k=down  l=up  ;=right  (same as Neovim setup)
+// Everything else uses Zellij defaults.
+// =============================================================================
+
+// Theme: dracula is built-in. "alucard" is a custom theme in themes/alucard.kdl
+// switch_theme fish function updates this line via sed for live hot-swap.
+theme "dracula"
+
+theme_dark "dracula"
+theme_light "alucard"
+
+// UI
+pane_frames true
+copy_on_select true
+scroll_buffer_size 10000
+
+// Session persistence: restore on next attach
+session_serialization true
+
+// ====================
+// Keybinds
+// ====================
+// Only overriding directional movement (j/k/l/; instead of h/j/k/l).
+// All other Zellij defaults (Ctrl+p for Pane mode, Ctrl+t for Tab mode, etc.) are kept.
+keybinds {
+    shared_except "locked" {
+        // Unbind Zellij's default Alt+Arrow pane movement so Neovim can use them
+        unbind "Alt Left" "Alt Down" "Alt Up" "Alt Right"
+        
+        // Remap to j=left  k=down  l=up  ;=right
+        bind "Alt j" { MoveFocusOrTab "Left"; }
+        bind "Alt k" { MoveFocus "Down"; }
+        bind "Alt l" { MoveFocus "Up"; }
+        bind "Alt ;" { MoveFocusOrTab "Right"; }
+
+        // Jump to tabs with Alt + number
+        bind "Alt 1" { GoToTab 1; }
+        bind "Alt 2" { GoToTab 2; }
+        bind "Alt 3" { GoToTab 3; }
+        bind "Alt 4" { GoToTab 4; }
+        bind "Alt 5" { GoToTab 5; }
+        bind "Alt 6" { GoToTab 6; }
+        bind "Alt 7" { GoToTab 7; }
+        bind "Alt 8" { GoToTab 8; }
+        bind "Alt 9" { GoToTab 9; }
+    }
+    pane {
+        unbind "h" "j" "k" "l"
+        bind "j" { MoveFocus "Left"; }
+        bind "k" { MoveFocus "Down"; }
+        bind "l" { MoveFocus "Up"; }
+        bind ";" { MoveFocus "Right"; }
+    }
+    move {
+        unbind "h" "j" "k" "l"
+        bind "j" { MovePane "Left"; }
+        bind "k" { MovePane "Down"; }
+        bind "l" { MovePane "Up"; }
+        bind ";" { MovePane "Right"; }
+    }
+    resize {
+        unbind "h" "j" "k" "l" "H" "J" "K" "L"
+        bind "j" "Left" { Resize "Increase Left"; }
+        bind "k" "Down" { Resize "Increase Down"; }
+        bind "l" "Up" { Resize "Increase Up"; }
+        bind ";" "Right" { Resize "Increase Right"; }
+        bind "J" { Resize "Decrease Left"; }
+        bind "K" { Resize "Decrease Down"; }
+        bind "L" { Resize "Decrease Up"; }
+        bind ":" { Resize "Decrease Right"; }
+    }
+    scroll {
+        unbind "h" "j" "k" "l"
+        bind "j" { PageScrollUp; }
+        bind "k" { ScrollDown; }
+        bind "l" { ScrollUp; }
+        bind ";" { PageScrollDown; }
+    }
+    search {
+        unbind "h" "j" "k" "l"
+        bind "j" { PageScrollUp; }
+        bind "k" { ScrollDown; }
+        bind "l" { ScrollUp; }
+        bind ";" { PageScrollDown; }
+    }
+    tab {
+        unbind "h" "j" "k" "l"
+        bind "j" "l" { GoToPreviousTab; }
+        bind ";" "k" { GoToNextTab; }
+    }
+}

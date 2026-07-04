@@ -1,0 +1,21 @@
+// Alucard — Zellij light theme
+// Matches the Alucard palette used across Ghostty, fish, bat, and delta.
+//
+// NOTE: In a light theme, `white` and `black` swap semantic roles:
+//   white → dark foreground (Zellij renders text with this)
+//   black → light neutral   (Zellij renders backgrounds/borders with this)
+themes {
+    alucard {
+        fg      "#1F1F1F"   // near-black body text
+        bg      "#FFFBEB"   // warm cream background
+        black   "#CFCFDE"   // light lavender — used for inactive backgrounds/borders
+        red     "#CB3A2A"   // dark red
+        green   "#14710A"   // dark green
+        yellow  "#846E15"   // dark golden
+        blue    "#644AC9"   // dark purple
+        magenta "#A3144D"   // dark crimson
+        cyan    "#036A96"   // dark teal (Alucard uses same hue for cyan)
+        white   "#1F1F1F"   // near-black — Zellij uses this slot for bright text; keep dark for contrast
+        orange  "#A34D14"   // dark orange
+    }
+}

@@ -1,0 +1,26 @@
+[mgr]
+prepend_keymap = [
+  # Shift HJKL to JKL;
+  { on = [ "j" ], run = "leave",    desc = "Go back to the parent directory (Left)" },
+  { on = [ "k" ], run = "arrow 1",  desc = "Move cursor down (Down)" },
+  { on = [ "l" ], run = "arrow -1", desc = "Move cursor up (Up)" },
+  { on = [ ";" ], run = "enter",    desc = "Enter the child directory (Right)" },
+]
+
+[tasks]
+prepend_keymap = [
+  { on = [ "k" ], run = "arrow 1",  desc = "Move cursor down" },
+  { on = [ "l" ], run = "arrow -1", desc = "Move cursor up" },
+]
+
+[select]
+prepend_keymap = [
+  { on = [ "k" ], run = "arrow 1",  desc = "Move cursor down" },
+  { on = [ "l" ], run = "arrow -1", desc = "Move cursor up" },
+]
+
+[input]
+prepend_keymap = [
+  { on = [ "j" ], run = "move -1", desc = "Move cursor left" },
+  { on = [ ";" ], run = "move 1",  desc = "Move cursor right" },
+]

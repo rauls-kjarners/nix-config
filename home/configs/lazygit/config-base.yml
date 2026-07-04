@@ -1,0 +1,11 @@
+keybinding:
+  universal:
+    prevItem-alt: 'l' # Up (Shifted from k)
+    nextItem-alt: 'k' # Down (Shifted from j)
+    prevBlock-alt: 'j' # Left / Previous Panel (Shifted from h)
+    nextBlock-alt: ';' # Right / Next Panel (Shifted from l)
+    scrollUpMain-alt1: 'L' # Scroll main panel up (Shifted from K)
+    scrollDownMain-alt1: 'K' # Scroll main panel down (Shifted from J)
+
+os:
+  editPreset: 'nvim'

@@ -1,0 +1,52 @@
+" --- General Settings ---
+colorscheme system
+" --- Keybindings: jkl; movement ---
+" 1. Preserve extended hint modes by moving them to 'h'
+keymap h ;
+
+" 2. Shift the lowercase movement keys one position to the right
+keymap j h
+keymap k j
+keymap l k
+keymap ; l
+
+" 3. Shift the uppercase keys for tab navigation
+bind J tabnext
+bind K tabprev
+
+" Unbind / so Zen can handle it natively for Find in Page
+unbind /
+
+" 4. History Navigation (LazyVim style)
+bind <C-o> back
+bind <C-i> forward
+
+" 5. Edge Scrolling
+bind zj scrollpx -9999 0
+bind z; scrollpx 9999 0
+
+
+" --- Search Engines ---
+" Format: set searchurls.<alias> <url_with_%s>
+set searchurls.w https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s
+set searchurls.g https://www.google.com/search?q=%s
+set searchurls.y https://www.youtube.com/results?search_query=%s
+set searchurls.gm https://www.google.com/maps?q=%s
+set searchurls.az https://www.amazon.de/s/?field-keywords=%s
+set searchurls.gi https://www.google.com/search?tbm=isch&q=%s
+set searchurls.gd https://drive.google.com/drive/search?q=%s
+set searchurls.gh https://www.github.com/search?q=%s
+set searchurls.i http://www.imdb.com/find?s=all&q=%s
+
+" --- Exclusions ---
+" Automatically disable Tridactyl on these sites
+blacklistadd mail.google.com
+blacklistadd vim-hero.com
+
+" --- Search & Hints ---
+" Use left-hand keys for hints to avoid conflicts with our jkl; keymaps on the right hand!
+set hintchars sadfqewcxz
+
+" --- External Editor ---
+" Spawn a fish shell, run Neovim, and then refocus Zen Browser when Neovim closes!
+set editorcmd open -W -n -a Ghostty --args -e /opt/homebrew/bin/fish -lc 'nvim "%f"; open -a Zen'

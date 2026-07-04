@@ -1,0 +1,200 @@
+" .ideavimrc v2
+
+"" --- OPTIONS ---
+set scrolloff=5
+set incsearch
+set hlsearch
+set ideajoin
+" set idearefactormode=keep
+set clipboard=unnamedplus,ideaput
+" set trackactionids
+" set ideastatusicon=gray
+set matchpairs+=<:>
+
+" Don't use Ex mode, use Q for formatting.
+nnoremap Q gq
+
+"" --- PLUGINS ---
+Plug 'chrisbra/matchit'
+" Plug 'justinmk/vim-sneak'
+Plug 'machakann/vim-highlightedyank'
+" Plug 'terryma/vim-multiple-cursors'
+Plug 'tommcdo/vim-exchange'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+" Plug 'vim-scripts/ReplaceWithRegister'
+set anyobject
+set dial
+" set quickscope
+set which-key
+set notimeout
+
+let mapleader = " "
+
+" let g:WhichKey_FontSize = "13"
+" let g:WhichKey_FontFamily = "JetBrains Mono"
+
+"" --- CUSTOM NAVIGATION ---
+" Shifted right: j=left, k=down, l=up, ;=right
+noremap j h
+noremap k j
+noremap l k
+noremap ; l
+" Retain the repeat character search on '
+" NOTE: this is also overridden by flash.repeat below — intentional since Flash replaces f/F/t/T
+noremap ' ;
+
+" --- SUB-WORD (CAMELCASE) NAVIGATION ---
+" Using JetBrains native word jumps instead of standard vim words
+" noremap w [w
+" noremap e ]w
+" noremap b [b
+" noremap ge ]b
+
+" Clear search highlights
+nnoremap <Esc> :nohlsearch<CR>
+
+" Scroll half a page
+" nnoremap K <C-d>
+" vnoremap K <C-d>
+" nnoremap L <C-u>
+" vnoremap L <C-u>
+
+" Open config file
+nnoremap <leader>cc :edit ~/.ideavimrc<CR>
+
+" --- DIAL ---
+let g:dial_include = "basic,numbers,dates,markdown"
+nnoremap <C-a> :DialIncrement<CR>
+nnoremap <C-x> :DialDecrement<CR>
+
+" --- FLASH ---
+nmap s  :action flash.search<CR>
+xmap s  :action flash.search<CR>
+" enhance vim f (find for char in characters to the right of the current cursor)
+nmap f  :action flash.find<CR>
+xmap f  :action flash.find<CR>
+" enhance vim F (find for char in characters to the left of the current cursor)
+nmap F  :action flash.find_backward<CR>
+xmap F  :action flash.find_backward<CR>
+" enhance vim t (till for char in characters to the right of the current cursor)
+nmap t  :action flash.till<CR>
+xmap t  :action flash.till<CR>
+" enhance vim T (till for char in characters to the left of the current cursor)
+nmap T  :action flash.till_backward<CR>
+xmap T  :action flash.till_backward<CR>
+" enhance vim ; (Repeat the last f/F/t/T search)
+nmap '  :action flash.repeat<CR>
+xmap '  :action flash.repeat<CR>
+" enhance vim , (Repeat the last f/F/t/T search backward)
+nmap " :action flash.repeat_backward<CR>
+xmap " :action flash.repeat_backward<CR>
+
+"" --- MULTIPLE CURSORS ---
+" nmap <C-n> <Plug>NextWholeOccurrence
+" xmap <C-n> <Plug>NextWholeOccurrence
+" nmap g<C-n> <Plug>NextOccurrence
+" xmap g<C-n> <Plug>NextOccurrence
+" xmap <C-x> <Plug>SkipOccurrence
+" xmap <C-p> <Plug>RemoveOccurrence
+" nmap <leader><C-n> <Plug>AllWholeOccurrences
+" xmap <leader><C-n> <Plug>AllWholeOccurrences
+" nmap <leader>g<C-n> <Plug>AllOccurrences
+" xmap <leader>g<C-n> <Plug>AllOccurrences
+
+"" --- QUICKSCOPE ---
+" Only show highlights when actively preparing to jump
+" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+"" --- SNEAK ---
+" nmap s <Plug>Sneak_s
+" nmap S <Plug>Sneak_S
+
+"" --- UI & NAVIGATION ---
+nnoremap <leader>e :action ActivateProjectToolWindow<CR>
+nnoremap <S-k>     :action Forward<CR>
+nnoremap <S-l>     :action Back<CR>
+nnoremap <A-[>     :action MethodUp<CR>
+nnoremap <A-]>     :action MethodDown<CR>
+
+"" --- FIND & SEARCH ---
+nnoremap <leader>fr :action RecentFiles<CR>
+
+" LazyVim text search (Grep)
+nnoremap <leader>sg :action FindInPath<CR>
+nnoremap <leader>/  :action FindInPath<CR>
+nnoremap <leader>sG :action SelectInProjectView<CR>:action FindInPath<CR>
+
+" File / Symbol / Class / Action searches
+nnoremap <leader><space> :action GotoFile<CR>
+nnoremap <leader>ff      :action GotoFile<CR>
+nnoremap <leader>sf      :action GotoFile<CR>
+nnoremap <leader>sc      :action GotoClass<CR>
+nnoremap <leader>ss      :action GotoSymbol<CR>
+nnoremap <leader>sa      :action GotoAction<CR>
+nnoremap <leader>fn      :action NewElement<CR>
+
+"" --- CODE / LSP ---
+nnoremap <leader>ca :action ShowIntentionActions<CR>
+vnoremap <leader>ca :action ShowIntentionActions<CR>
+nnoremap <leader>cf :action ReformatCode<CR>
+nnoremap <leader>cr :action RenameElement<CR>
+nnoremap <leader>cR :action RenameFile<CR>
+nnoremap <leader>cn :action Generate<CR>
+nnoremap <leader>cs :action EditorCompleteStatement<CR>
+
+"" --- GOTO DEFINITIONS ---
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gI :action GotoImplementation<CR>
+nnoremap gy :action GotoTypeDeclaration<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap gm :action GotoSuperMethod<CR>
+
+"" --- HOVER & TYPE INFO ---
+nnoremap K           :action ShowHoverInfo<CR>
+nnoremap <leader>qi  :action ShowHoverInfo<CR>
+nnoremap <leader>qy  :action QuickTypeDefinition<CR>
+nnoremap <leader>qey :action ExpressionTypeInfo<CR>
+
+"" --- USAGES ---
+nnoremap gr         :action ShowUsages<CR>
+nnoremap <leader>fu :action FindUsages<CR>
+nnoremap <leader>su :action ShowUsages<CR>
+
+"" --- DIAGNOSTICS ---
+nnoremap ]e         :action GotoNextError<CR>
+nnoremap [e         :action GotoPreviousError<CR>
+nnoremap <leader>cd :action ShowErrorDescription<CR>
+
+"" --- REFACTORING ---
+nnoremap <leader>rr :action RefactoringMenu<CR>
+vnoremap <leader>rr :action RefactoringMenu<CR>
+nnoremap <leader>rm :action ExtractMethod<CR>
+vnoremap <leader>rm :action ExtractMethod<CR>
+nnoremap <leader>rv :action IntroduceVariable<CR>
+vnoremap <leader>rv :action IntroduceVariable<CR>
+nnoremap <leader>rf :action IntroduceField<CR>
+vnoremap <leader>rf :action IntroduceField<CR>
+nnoremap <leader>rs :action ChangeSignature<CR>
+nnoremap <leader>sw :action SurroundWith<CR>
+vnoremap <leader>sw :action SurroundWith<CR>
+
+"" --- MISC ---
+" Paste over visual selection without yanking the replaced text (LazyVim style)
+vnoremap p "_dP
+nnoremap <leader>fs :action FileStructurePopup<CR>
+nnoremap <leader>lc :action JumpToLastChange<CR>
+nnoremap <leader>ll :action RecentLocations<CR>
+nnoremap <leader>sp :action SelectInProjectView<CR>
+nnoremap <leader>cp :action CopyReference<CR>
+
+"" --- GIT ---
+" nnoremap <leader>gg :action ActivateVersionControlToolWindow<CR>
+nnoremap <leader>gb :action Annotate<CR>
+nnoremap <leader>gg :action LazyGit.Open<CR>
+
+"" --- TERMINAL / TEST ---
+nnoremap <leader>ft :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>tt :action RunClass<CR>
+nnoremap <leader>tl :action Run<CR>
+nnoremap <leader>tf :action RerunFailedTests<CR>

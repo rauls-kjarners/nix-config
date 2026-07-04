@@ -1,0 +1,25 @@
+{
+  "symfony.enabled": true,
+  "indexer.exclude_patterns": [
+    "/vendor/**/Tests/**/*",
+    "/vendor/**/tests/**/*",
+    "/vendor/composer/**/*",
+    "/var/log/**/*",
+    "/var/data/**/*",
+    "/var/test/**/*",
+    "/var/dev/**/*",
+    "/var/cache/*/*.php",
+    "/var/cache/.phpunit.cache/**/*",
+    "/var/cache/*/Container*/**/*",
+    "/var/cache/*/twig/**/*",
+    "/var/cache/*/translations/**/*",
+    "/var/cache/*/jms_aop/**/*",
+    "/var/cache/*/profiler/**/*",
+    "/var/cache/*/pools/**/*",
+    "/var/cache/*/doctrine/**/*",
+    "/var/cache/prod/**/*",
+    "/var/cache/test/**/*",
+    "/build/**/*",
+    "/public/bundles/**/*"
+  ]
+}

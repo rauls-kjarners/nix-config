@@ -1,0 +1,6 @@
+[tools]
+"npm:skills" = "latest"
+"github:can1357/oh-my-pi" = "latest"
+
+[settings]
+minimum_release_age_excludes = ["github:can1357/oh-my-pi"]

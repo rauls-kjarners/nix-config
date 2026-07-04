@@ -1,0 +1,34 @@
+git:
+  pagers:
+    - colorArg: always
+      pager: 'delta --dark --paging=never --features=dracula --line-numbers --hyperlinks --hyperlinks-file-link-format="idea://open?file={path}&line={line}"'
+
+gui:
+  showCommandLog: false
+  theme:
+    activeBorderColor:
+      - "#FF79C6"
+      - bold
+    inactiveBorderColor:
+      - "#F8F8F2"
+    searchingActiveBorderColor:
+      - "#8BE9FD"
+      - bold
+    optionsTextColor:
+      - "#6272A4"
+    selectedLineBgColor:
+      - "#6272A4"
+    inactiveViewSelectedLineBgColor:
+      - bold
+    cherryPickedCommitFgColor:
+      - "#6272A4"
+    cherryPickedCommitBgColor:
+      - "#8BE9FD"
+    markedBaseCommitFgColor:
+      - "#8BE9FD"
+    markedBaseCommitBgColor:
+      - "#F1FA8C"
+    unstagedChangesColor:
+      - "#FF5555"
+    defaultFgColor:
+      - "#F8F8F2"

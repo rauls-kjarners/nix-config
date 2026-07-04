@@ -1,0 +1,214 @@
+{ config, pkgs, inputs, ... }:
+
+{
+  # Core packages for both platforms
+  home.packages = with pkgs; [
+    # Editors & Multiplexers
+    neovim
+    zellij
+    
+    # Git & CLI Utilities
+    gcc
+    gnumake
+    git
+    lazygit
+    bat
+    eza
+    fd
+    ripgrep
+    fzf
+    zoxide
+    yazi
+    atuin
+    direnv
+    btop
+    fastfetch
+    gum
+    glow
+    tealdeer
+    jira-cli-go
+    just
+    mise
+    markdownlint-cli
+    
+    # Data Processors
+    jq
+    htmlq
+    yq-go # nixpkgs uses yq-go for the popular yaml processor
+    
+    # Neovim / Mason LSP Dependencies
+    unzip
+    wget
+    curl
+    gzip
+    jre_headless
+    python3
+    
+    # Containers & Databases
+    lazydocker
+    k9s
+    lazysql
+    pgcli
+    libpq
+    sqlite
+    redis
+
+    # Global toolchains
+    nodejs
+    bun
+    go
+    cargo
+    phpactor
+    gopls
+  ];
+
+  programs.home-manager.enable = true;
+
+  # Native Git Configuration
+  programs.git = {
+    enable = true;
+    
+    settings = {
+      user.name = "rauls-kjarners";
+      user.email = "rauls.kjarners@gmail.com";
+      core.editor = "nvim";
+    };
+    
+    ignores = [
+      ".phpactor.json"
+      ".DS_Store"
+      ".DS_Store?"
+      "._*"
+      ".Spotlight-V100"
+      ".Trashes"
+      "ehthumbs.db"
+      "Thumbs.db"
+    ];
+  };
+
+  # Delta Pager Configuration
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      navigate = true;
+      hyperlinks = true;
+      "hyperlinks-file-link-format" = "file://{path}:{line}";
+      "line-numbers" = true;
+      
+      "dracula" = {
+        "syntax-theme" = "Dracula";
+        "plus-style" = "syntax #003800";
+        "minus-style" = "syntax #3f0001";
+        "plus-emph-style" = "syntax #007000";
+        "minus-emph-style" = "syntax #700000";
+        "plus-non-emph-style" = "syntax #003800";
+        "minus-non-emph-style" = "syntax #3f0001";
+        "line-numbers-zero-style" = "#6272A4";
+        "line-numbers-left-style" = "#6272A4";
+        "line-numbers-right-style" = "#6272A4";
+        "line-numbers-minus-style" = "#FF5555";
+        "line-numbers-plus-style" = "#50FA7B";
+      };
+      
+      "alucard" = {
+        "syntax-theme" = "Alucard";
+        "plus-style" = "syntax #d8f0d4";
+        "minus-style" = "syntax #f7ddd9";
+        "plus-emph-style" = "syntax #b0e0aa";
+        "minus-emph-style" = "syntax #f0bdb5";
+        "plus-non-emph-style" = "syntax #d8f0d4";
+        "minus-non-emph-style" = "syntax #f7ddd9";
+      };
+    };
+  };
+
+  # GitHub CLI and extensions
+  programs.gh = {
+    enable = true;
+    extensions = [ pkgs.gh-dash ];
+  };
+
+  # Enable font management
+  fonts.fontconfig.enable = true;
+
+  # Enable Bat and natively load custom themes
+  programs.bat = {
+    enable = true;
+    themes = {
+      "Alucard" = {
+        src = ./configs/bat/themes;
+        file = "Alucard.tmTheme";
+      };
+    };
+  };
+
+  # Enable Fish shell and native plugins
+  programs.fish = {
+    enable = true;
+    shellAliases = {
+      # System update command
+      update = "just -f ~/Projects/nix-config/justfile update";
+
+      # Core tools overrides
+      cat = "bat";
+      ls = "eza --color=always --icons=always";
+      ll = "eza --color=always --long --git --icons=always";
+      la = "eza --color=always --long --git --icons=always --all";
+
+      # Shortcuts
+      lzg = "lazygit";
+      lzd = "lazydocker";
+      lzs = "lazysql";
+      zj = "zellij attach -c main";
+      agya = "agy --dangerously-skip-permissions";
+    };
+    plugins = [
+      { name = "plugin-git"; src = pkgs.fishPlugins.plugin-git.src; }
+      { name = "fzf.fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+      { name = "hydro"; src = pkgs.fishPlugins.hydro.src; }
+      {
+        name = "dracula";
+        src = pkgs.fetchFromGitHub {
+          owner = "dracula";
+          repo = "fish";
+          rev = "master";
+          sha256 = "1xim3yfqf2hmy0gcb58za1cdbgl23bpxqsc815q6qnm6yh8vhahz";
+        };
+      }
+    ];
+    interactiveShellInit = ''
+      if test -f ${./configs/fish/config.fish}
+        source ${./configs/fish/config.fish}
+      end
+    '';
+  };
+
+  # Symlink static dotfiles into ~/.config/ (Dynamic configs are built by switch_theme.fish)
+  xdg.configFile = {
+    "fish/functions".source = ./configs/fish/functions;
+    "nvim".source = ./configs/nvim;
+    "tridactyl".source = ./configs/tridactyl;
+    "wezterm".source = ./configs/wezterm;
+    "phpactor".source = ./configs/phpactor;
+    "glamour".source = ./configs/glamour;
+    "mise".source = ./configs/mise;
+  };
+
+  # Home root symlinks
+  home.file = {
+    ".ideavimrc".source = ./configs/ideavim/.ideavimrc;
+    ".local/bin".source = ./configs/bin;
+    ".markdownlint-cli2.yaml".source = ./configs/markdownlint/.markdownlint-cli2.yaml;
+    
+    # Custom AI Agents & Skills
+    ".claude/agents".source = ./configs/claude/agents;
+    ".omp/agent/RULES.md".source = ./configs/omp/RULES.md;
+    ".omp/agent/agents".source = ./configs/claude/agents;
+    
+    # Bridge to Windows OneDrive for Obsidian
+    "OneDrive/vaults".source = config.lib.file.mkOutOfStoreSymlink "/mnt/c/Users/rauls/OneDrive/vaults";
+  };
+
+  home.stateVersion = "23.11";
+}

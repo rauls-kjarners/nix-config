@@ -1,0 +1,64 @@
+#!/bin/bash
+# ~/.local/bin/neotest-remote
+#
+# This script mirrors PhpStorm's "Remote Interpreter" path mapping feature.
+# Neotest passes absolute paths (e.g. /Users/name/Projects/app/tests/Example.php),
+# but Docker expects relative or container paths.
+# This script intercepts the arguments, translates the paths, and runs the command in Docker.
+
+CONTAINER_NAME="app"
+
+ARGS=()
+JUNIT_HOST_PATH=""
+JUNIT_LOCAL_PATH=".neotest-junit.xml"
+
+while [[ $# -gt 0 ]]; do
+    arg="$1"
+    if [[ "$arg" == "--log-junit" ]]; then
+        ARGS+=("--log-junit")
+        shift
+        JUNIT_HOST_PATH="$1"
+        ARGS+=("$JUNIT_LOCAL_PATH")
+    elif [[ "$arg" == --log-junit=* ]]; then
+        JUNIT_HOST_PATH="${arg#--log-junit=}"
+        ARGS+=("--log-junit=$JUNIT_LOCAL_PATH")
+    elif [[ "$arg" == "$PWD" ]]; then
+        # Omit the project root argument so paratest uses phpunit.xml.dist
+        # instead of forcibly scanning the entire directory (which includes vendor/ and causes fatal errors).
+        :
+    elif [[ "$arg" == "$PWD/"* ]]; then
+        ARGS+=("${arg#$PWD/}")
+    else
+        ARGS+=("$arg")
+    fi
+    shift
+done
+
+if [[ -f "vendor/bin/paratest" ]]; then
+    CMD="vendor/bin/paratest"
+    PROCESSES=${PARATEST_PROCESSES:-6}
+    ARGS=("--processes=$PROCESSES" "${ARGS[@]}")
+else
+    CMD="vendor/bin/phpunit"
+fi
+
+# Run the command inside the docker container
+docker-compose run --rm -T --no-deps "$CONTAINER_NAME" $CMD "${ARGS[@]}"
+EXIT_CODE=$?
+
+# Move the junit log from the docker-accessible relative path to the Mac absolute path Neotest expects
+if [[ -n "$JUNIT_HOST_PATH" ]]; then
+    if [[ -f "$JUNIT_LOCAL_PATH" ]]; then
+        # Rewrite container paths to host paths so Neotest can match them
+        if [[ "$(uname)" == "Darwin" ]]; then
+            sed -i '' "s|file=\"/app/|file=\"$PWD/|g" "$JUNIT_LOCAL_PATH"
+        else
+            sed -i "s|file=\"/app/|file=\"$PWD/|g" "$JUNIT_LOCAL_PATH"
+        fi
+
+        mkdir -p "$(dirname "$JUNIT_HOST_PATH")"
+        mv "$JUNIT_LOCAL_PATH" "$JUNIT_HOST_PATH"
+    fi
+fi
+
+exit $EXIT_CODE

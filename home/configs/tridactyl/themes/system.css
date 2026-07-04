@@ -1,0 +1,182 @@
+:root {
+  /* Default to Alucard (Light Theme) */
+  --tridactyl-font-family: monospace;
+  --tridactyl-bg: #fffbeb;
+  --tridactyl-fg: #1f1f1f;
+
+  --tridactyl-status-font-size: 12px;
+  --tridactyl-status-font-family: monospace;
+  --tridactyl-status-font-bg: var(--tridactyl-cmdl-bg);
+  --tridactyl-status-border: 1px solid #644ac9;
+  --tridactyl-status-border-radius: 4px;
+
+  --tridactyl-header-font-size: 16px;
+
+  --tridactyl-of-fg: #1f1f1f;
+  --tridactyl-of-bg: #cfcfde;
+
+  --tridactyl-hintspan-fg: #fffbeb !important;
+  --tridactyl-hintspan-bg: #14710a !important;
+
+  --tridactyl-hint-active-fg: #fffbeb;
+  --tridactyl-hint-active-bg: #a3144d;
+  --tridactyl-hint-active-outline: 1px solid #a3144d;
+
+  --tridactyl-hint-bg: rgba(255, 251, 235, 0.75);
+  --tridactyl-hint-outline: 1px solid var(--tridactyl-hintspan-bg);
+
+  --tridactyl-cmdl-font-size: 16px;
+  --tridactyl-cmplt-option-height: 1.9em;
+
+  --tridactyl-border-radius: 4px;
+
+  /* Custom variables for hardcoded element colors */
+  --my-link-color: #036a96;
+  --my-code-bg: #cfcfde;
+  --my-cmdl-border: #644ac9;
+  --my-focused-bg: #a3144d;
+  --my-focused-fg: #fffbeb;
+  --my-shadow: rgba(0, 0, 0, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Override with Dracula (Dark Theme) */
+    --tridactyl-bg: #282a36;
+    --tridactyl-fg: #f8f8f2;
+
+    --tridactyl-status-border: 1px solid #bd93f9;
+
+    --tridactyl-of-fg: #f8f8f2;
+    --tridactyl-of-bg: #44475a;
+
+    --tridactyl-hintspan-fg: #282a36 !important;
+    --tridactyl-hintspan-bg: #50fa7b !important;
+
+    --tridactyl-hint-active-fg: #282a36;
+    --tridactyl-hint-active-bg: #ff79c6;
+    --tridactyl-hint-active-outline: 1px solid #ff79c6;
+
+    --tridactyl-hint-bg: rgba(40, 42, 54, 0.75);
+
+    --my-link-color: #8be9fd;
+    --my-code-bg: #44475a;
+    --my-cmdl-border: #bd93f9;
+    --my-focused-bg: #ff79c6;
+    --my-focused-fg: #282a36;
+    --my-shadow: #000000;
+  }
+}
+
+:root.TridactylOwnNamespace {
+  scrollbar-width: thin;
+}
+
+:root.TridactylOwnNamespace a {
+  color: var(--my-link-color);
+}
+
+:root.TridactylOwnNamespace code {
+  background-color: var(--my-code-bg);
+  padding: 3px 7px;
+}
+
+:root #command-line-holder {
+  order: 1;
+  border: 2px solid var(--my-cmdl-border);
+}
+
+:root #command-line-holder,
+:root #tridactyl-input {
+  border-radius: var(--tridactyl-border-radius) !important;
+}
+
+:root #tridactyl-colon::before {
+  content: "";
+}
+
+:root #tridactyl-input {
+  width: 96%;
+  padding: 1rem;
+}
+
+:root #completions table {
+  table-layout: fixed;
+  padding: 1rem;
+  padding-top: 0;
+}
+
+:root #completions > div {
+  max-height: calc(20 * var(--tridactyl-cmplt-option-height));
+  min-height: calc(10 * var(--tridactyl-cmplt-option-height));
+}
+
+:root #completions {
+  border: none !important;
+  font-family: var(--tridactyl-font-family);
+  order: 2;
+  margin-top: 10px;
+  border-radius: var(--tridactyl-border-radius);
+}
+
+:root #completions .HistoryCompletionSource table {
+  width: 100%;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+:root #completions .BufferCompletionSource table {
+  width: unset;
+  font-size: unset;
+  border-spacing: unset;
+  table-layout: unset;
+}
+
+:root #completions table tr .title {
+  width: 50%;
+}
+
+:root #completions tr .documentation {
+  white-space: nowrap;
+  overflow: auto;
+  text-overflow: ellipsis;
+}
+
+:root #completions .sectionHeader {
+  background: transparent;
+  padding: 1rem 1rem 0.4rem !important;
+}
+
+:root #cmdline_iframe {
+  position: fixed !important;
+  bottom: unset;
+  top: 25% !important;
+  left: 10% !important;
+  z-index: 2147483647 !important;
+  width: 80% !important;
+  filter: drop-shadow(0px 0px 20px var(--my-shadow)) !important;
+  color-scheme: only light; /* Overridden below for dark mode */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root #cmdline_iframe {
+    color-scheme: only dark;
+  }
+}
+
+:root .TridactylStatusIndicator {
+  position: fixed !important;
+  bottom: 10px !important;
+  right: 10px !important;
+  padding: 5px !important;
+}
+
+#completions .focused {
+  background: var(--my-focused-bg);
+  color: var(--my-focused-fg);
+}
+
+#completions .focused .url {
+  background: var(--my-focused-bg);
+  color: var(--my-focused-fg);
+}
