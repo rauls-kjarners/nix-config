@@ -22,9 +22,14 @@
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # nix-homebrew for managing Homebrew from nix-darwin
+    nix-homebrew = {
+      url = "github:zhaofengli/nix-homebrew";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, nixos-wsl, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-darwin, nixos-wsl, nix-homebrew, ... }@inputs:
     let
       # Systems
       systemWSL = "x86_64-linux";
@@ -70,13 +75,25 @@
           specialArgs = { inherit inputs pkgsMac; };
           modules = [
             ./hosts/mac/default.nix
-            
+
+            # nix-homebrew: adopt the existing /opt/homebrew
+            nix-homebrew.darwinModules.nix-homebrew
+            {
+              nix-homebrew = {
+                enable = true;
+                user = "rauls.kjarners";
+                autoMigrate = true;
+                mutableTaps = true;
+              };
+            }
+
             # Home Manager integrated module
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.backupFileExtension = "pre-nix-bak";
               home-manager.users."rauls.kjarners" = import ./home/mac.nix;
             }
           ];

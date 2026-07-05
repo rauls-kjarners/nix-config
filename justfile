@@ -8,7 +8,8 @@ default:
 update:
 	nix flake update
 	@if [ "$(uname)" = "Darwin" ]; then \
-		darwin-rebuild switch --flake ~/Projects/nix-config#macbook; \
+		sudo darwin-rebuild switch --flake ~/Projects/nix-config#macbook && \
+		brew update && brew upgrade && brew cleanup; \
 	elif [ "$(uname)" = "Linux" ]; then \
 		sudo nixos-rebuild switch --flake ~/Projects/nix-config#nixos-wsl; \
 	fi

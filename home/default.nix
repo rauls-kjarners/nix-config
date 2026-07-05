@@ -6,7 +6,7 @@
     # Editors & Multiplexers
     neovim
     zellij
-    
+
     # Git & CLI Utilities
     gcc
     gnumake
@@ -30,21 +30,29 @@
     just
     mise
     markdownlint-cli
-    
+    pre-commit
+    shellcheck
+    gnused
+    coreutils
+    unison
+    _7zz
+
     # Data Processors
     jq
     htmlq
-    yq-go # nixpkgs uses yq-go for the popular yaml processor
-    
-    # Neovim / Mason LSP Dependencies
+    yq-go
+
+    # Neovim / LSP Dependencies
     unzip
     wget
     curl
     gzip
     jre_headless
     python3
-    
-    # Containers & Databases
+    luarocks
+    stylua
+
+    # Containers, Kubernetes & Cloud
     lazydocker
     k9s
     lazysql
@@ -52,14 +60,21 @@
     libpq
     sqlite
     redis
+    kubernetes-helm
+    kubectx
+    ansible
+    ansible-lint
+    awscli2
+    sops
 
-    # Global toolchains
+    # Global Toolchains
     nodejs
     bun
     go
     cargo
     phpactor
     gopls
+    uv
   ];
 
   programs.home-manager.enable = true;
@@ -67,13 +82,18 @@
   # Native Git Configuration
   programs.git = {
     enable = true;
-    
+
     settings = {
-      user.name = "rauls-kjarners";
+      user.name = "Rauls Kjarners";
       user.email = "rauls.kjarners@gmail.com";
       core.editor = "nvim";
+      init.defaultBranch = "main";
+      pull.rebase = true;
+      merge.conflictStyle = "zdiff3";
     };
-    
+
+    lfs.enable = true;
+
     ignores = [
       ".phpactor.json"
       ".DS_Store"
@@ -169,15 +189,6 @@
       { name = "plugin-git"; src = pkgs.fishPlugins.plugin-git.src; }
       { name = "fzf.fish"; src = pkgs.fishPlugins.fzf-fish.src; }
       { name = "hydro"; src = pkgs.fishPlugins.hydro.src; }
-      {
-        name = "dracula";
-        src = pkgs.fetchFromGitHub {
-          owner = "dracula";
-          repo = "fish";
-          rev = "master";
-          sha256 = "1xim3yfqf2hmy0gcb58za1cdbgl23bpxqsc815q6qnm6yh8vhahz";
-        };
-      }
     ];
     interactiveShellInit = ''
       if test -f ${./configs/fish/config.fish}
@@ -211,7 +222,7 @@
   # Home root symlinks
   home.file = {
     ".ideavimrc".source = ./configs/ideavim/.ideavimrc;
-    ".local/bin".source = ./configs/bin;
+    ".local/bin/neotest-remote".source = ./configs/bin/neotest-remote;
     ".markdownlint-cli2.yaml".source = ./configs/markdownlint/.markdownlint-cli2.yaml;
     
     # Custom AI Agents & Global Rules
@@ -219,9 +230,6 @@
     ".claude/CLAUDE.md".source = ./configs/claude/CLAUDE.md;
     ".claude/agents".source = ./configs/claude/agents;
     ".gemini/config/AGENTS.md".source = ./configs/antigravity/AGENTS.md;
-    
-    # Bridge to Windows OneDrive for Obsidian
-    "OneDrive/vaults".source = config.lib.file.mkOutOfStoreSymlink "/mnt/c/Users/rauls/OneDrive/vaults";
   };
 
   home.stateVersion = "23.11";

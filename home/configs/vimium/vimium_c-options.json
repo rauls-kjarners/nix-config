@@ -1,0 +1,15 @@
+{
+  "keyMappings": "unmap h\nunmap H\nunmap zH\nunmap zL\n\nmap j scrollLeft\nmap k scrollDown\nmap l scrollUp\nmap ; scrollRight\n\nmap zj scrollToLeft\nmap z; scrollToRight\n\nmap J goBack\nmap : goForward\n\nmap L previousTab\nmap K nextTab",
+  "searchEngines": "w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\ng: https://www.google.com/search?q=%s Google\n# l: https://www.google.com/search?q=%s&btnI I'm feeling lucky...\ny: https://www.youtube.com/results?search_query=%s Youtube\ngm: https://www.google.com/maps?q=%s Google maps\n# b: https://www.bing.com/search?q=%s Bing\n# d: https://duckduckgo.com/?q=%s DuckDuckGo\naz: https://www.amazon.de/s/?field-keywords=%s Amazon.de\n# qw: https://www.qwant.com/?q=%s Qwant\ngi: https://www.google.com/search?tbm=isch&q=%s Google Images\ngd: https://drive.google.com/drive/search?q=%s Google Drive\ngh: https://www.github.com/search?q=%s GitHub\ni: http://www.imdb.com/find?s=all&q=%s IMDB",
+  "searchUrl": "https://www.google.com/search?q=%s Google",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://mail.google.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.vim-hero.com/*"
+    }
+  ]
+}

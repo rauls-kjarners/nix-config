@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
+  # Let nix-darwin manage the Nix installation and daemon.
+  nix.enable = true;
   nix.package = pkgs.nix;
 
   # Enable Flakes
@@ -14,32 +14,66 @@
   programs.zsh.enable = true;
   programs.fish.enable = true;
 
-  networking.hostName = "macbook";
-  networking.computerName = "macbook";
-
   users.users."rauls.kjarners" = {
     name = "rauls.kjarners";
     home = "/Users/rauls.kjarners";
     shell = pkgs.fish;
   };
 
-  system.stateVersion = 4;
+  system.primaryUser = "rauls.kjarners";
+  system.stateVersion = 6;
 
   # Native macOS Fonts
   fonts.packages = [
     pkgs.nerd-fonts.jetbrains-mono
   ];
 
-  # Homebrew for macOS specific native apps
+  # Homebrew: declarative, non-destructive (nix-homebrew manages the tap)
   homebrew = {
     enable = true;
+    onActivation = {
+      cleanup = "none";     # never uninstall undeclared packages
+      autoUpdate = false;   # deterministic switches
+      upgrade = false;
+    };
+    taps = [
+      "dimentium/autoraise"
+      "buo/cask-upgrade"
+      "github/gh"
+    ];
     brews = [
+      "docker-credential-helper"
+      "docker-credential-helper-ecr"
+      "mas"
       "pngpaste"
     ];
     casks = [
-      # Add any macOS GUI applications here (e.g., "raycast", "spotify")
+      "appcleaner"
+      "autoraiseapp"
+      "betterdisplay"
+      "copilot-cli"
+      "cyberduck"
+      "ghostty"
+      "github"
+      "google-chrome"
+      "homerow"
+      "ngrok"
+      "obsidian"
+      "orbstack"
+      "raycast"
+      "session-manager-plugin"
+      "suspicious-package"
+      "visual-studio-code"
+      "wezterm@nightly"
+      "zed"
     ];
-    onActivation.cleanup = "zap";
+    masApps = {
+      "Dimify"         = 6758863439;
+      "Keynote"        = 409183694;
+      "Numbers"        = 409203825;
+      "Pages"          = 409201541;
+      "The Unarchiver" = 425424353;
+    };
   };
 
   # Auto-switch terminal theme when macOS dark mode changes

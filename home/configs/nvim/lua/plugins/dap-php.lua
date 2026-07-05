@@ -12,17 +12,12 @@ return {
     -- Ensure Mason installs the PHP debug adapter
     {
         "mason-org/mason.nvim",
+        lazy = true,
         opts = function(_, opts)
             opts.ensure_installed = opts.ensure_installed or {}
             vim.list_extend(opts.ensure_installed, { "php-debug-adapter" })
             return opts
         end,
-    },
-
-    -- Inline variable values shown next to code during a debug session
-    {
-        "theHamsta/nvim-dap-virtual-text",
-        opts = {},
     },
 
     -- PHP/Xdebug adapter configuration
