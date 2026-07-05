@@ -5,10 +5,45 @@
   nix.enable = true;
   nix.package = pkgs.nix;
 
-  # Enable Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
-  nixpkgs.config.allowUnfree = true;
+  # binary caches, trusted users, store optimisation
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    trusted-users = [
+      "root"
+      "rauls.kjarners"
+    ];
+    auto-optimise-store = true;
+    substituters = [
+      "https://cache.nixos.org"
+      "https://nix-community.cachix.org"
+    ];
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+  # macOS GC uses launchd interval format, not systemd dates
+  nix.gc = {
+    automatic = true;
+    interval = {
+      Weekday = 0;
+      Hour = 3;
+      Minute = 0;
+    };
+    options = "--delete-older-than 14d";
+  };
+
+  # Workaround for broken darwin-manual-html on nixos-unstable
+  documentation.enable = false;
+  documentation.doc.enable = false;
+
+  # Disable the uninstaller to work around the darwin-manual-html breakage.
+  # The uninstaller internally evaluates a minimal nix-darwin system where
+  # docs are enabled by default, hitting the removed --toc-depth flag.
+  system.tools.darwin-uninstaller.enable = false;
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;
@@ -32,20 +67,22 @@
   homebrew = {
     enable = true;
     onActivation = {
-      cleanup = "none";     # never uninstall undeclared packages
-      autoUpdate = false;   # deterministic switches
+      cleanup = "none"; # never uninstall undeclared packages
+      autoUpdate = false; # deterministic switches
       upgrade = false;
     };
     taps = [
       "dimentium/autoraise"
       "buo/cask-upgrade"
       "github/gh"
+      "cormacrelf/tap"
     ];
     brews = [
       "docker-credential-helper"
       "docker-credential-helper-ecr"
       "mas"
       "pngpaste"
+      "dark-notify"
     ];
     casks = [
       "appcleaner"
@@ -68,28 +105,38 @@
       "zed"
     ];
     masApps = {
-      "Dimify"         = 6758863439;
-      "Keynote"        = 409183694;
-      "Numbers"        = 409203825;
-      "Pages"          = 409201541;
+      "Dimify" = 6758863439;
+      "Keynote" = 409183694;
+      "Numbers" = 409203825;
+      "Pages" = 409201541;
       "The Unarchiver" = 425424353;
     };
   };
 
-  # Auto-switch terminal theme when macOS dark mode changes
-  launchd.user.agents."dark-mode-notify" = {
+  # Replaces bouk/dark-mode-notify (no formula) with cormacrelf/dark-notify.
+
+  # Homebrew 4.4.0+ requires explicitly trusting third-party taps.
+  # This activation script runs before the homebrew bundle is evaluated.
+  system.activationScripts.trustHomebrewTaps.text = ''
+    if [ -x "/opt/homebrew/bin/brew" ]; then
+      sudo -H -u "rauls.kjarners" /opt/homebrew/bin/brew trust cormacrelf/tap >/dev/null 2>&1 || true
+    fi
+  '';
+  # dark-notify -c CMD invokes CMD <mode> on startup and on every appearance change.
+  launchd.user.agents."dark-notify" = {
     serviceConfig = {
-      Label = "com.user.dark-mode-notify";
+      Label = "com.user.dark-notify";
       KeepAlive = true;
-      StandardErrorPath = "/tmp/dark-mode-notify-stderr.log";
-      StandardOutPath = "/tmp/dark-mode-notify-stdout.log";
-      ProgramArguments = [
-        "/opt/homebrew/bin/dark-mode-notify"
-        "/run/current-system/sw/bin/fish"
-        "-c"
-        "if test \"$DARKMODE\" = 1; switch_theme dark; else; switch_theme light; end"
-      ];
       RunAtLoad = true;
+      StandardErrorPath = "/tmp/dark-notify-stderr.log";
+      StandardOutPath = "/tmp/dark-notify-stdout.log";
+      ProgramArguments = [
+        "/opt/homebrew/bin/dark-notify"
+        "-c"
+        "${pkgs.writeShellScript "theme-notify" ''
+          exec /run/current-system/sw/bin/fish -l -c "switch_theme $1"
+        ''}"
+      ];
     };
   };
 }

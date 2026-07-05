@@ -57,6 +57,15 @@ config.window_decorations = "RESIZE"
 config.window_background_opacity = 1.0
 config.enable_tab_bar = false
 
+-- Keybinds
+config.keys = {
+	{
+		key = "Enter",
+		mods = "SHIFT",
+		action = wezterm.action.SendString("\x1b[13;2u"),
+	},
+}
+
 -- OS-Specific overrides
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.font_size = 10.0
@@ -69,14 +78,23 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 			username = "nixos",
 		},
 	}
+	-- Windows: Ctrl+Backspace to delete previous word (Ctrl+W)
+	table.insert(config.keys, {
+		key = "Backspace",
+		mods = "CTRL",
+		action = wezterm.action.SendString("\x17"),
+	})
 elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
 	-- macOS specific bindings (Option as Alt)
 	config.send_composed_key_when_left_alt_is_pressed = false
 	config.send_composed_key_when_right_alt_is_pressed = false
+	-- macOS: Cmd+Backspace to delete line (Ctrl+U)
+	table.insert(config.keys, {
+		key = "Backspace",
+		mods = "CMD",
+		action = wezterm.action.SendString("\x15"),
+	})
 end
-
--- Keybinds and Mouse Bindings
-config.keys = {}
 
 config.mouse_bindings = {
 	-- 1. Right-click to paste from the system clipboard

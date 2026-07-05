@@ -1,0 +1,2 @@
+# disabled because NixOS/home-manager modules conventionally set the same top-level key multiple times
+disabled = ["repeated_keys"]

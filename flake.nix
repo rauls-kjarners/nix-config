@@ -11,10 +11,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Nix-Darwin for macOS
+    # Nix-Darwin for macOS — intentionally NOT following our nixpkgs so
+    # nix-darwin uses its own pinned nixpkgs for internal builds
+    # (darwin-manual-html etc.). System packages are overridden below via
+    # nixpkgs.pkgs = pkgsMac.
     nix-darwin = {
-      url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-darwin/nix-darwin";
     };
 
     # NixOS-WSL
@@ -27,35 +29,50 @@
     nix-homebrew = {
       url = "github:zhaofengli/nix-homebrew";
     };
+
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, nixos-wsl, nix-homebrew, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nix-darwin,
+      nixos-wsl,
+      nix-homebrew,
+      git-hooks,
+      ...
+    }@inputs:
     let
       # Systems
       systemWSL = "x86_64-linux";
       systemMac = "aarch64-darwin";
 
-      # Define Nixpkgs for each system
-      pkgsWSL = import nixpkgs {
-        system = systemWSL;
-        config.allowUnfree = true;
-      };
-
+      systems = [
+        systemWSL
+        systemMac
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
       pkgsMac = import nixpkgs {
         system = systemMac;
         config.allowUnfree = true;
       };
 
-    in {
+    in
+    {
       # NixOS configurations (WSL)
       nixosConfigurations = {
         nixos-wsl = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs pkgsWSL; };
+          specialArgs = { inherit inputs; };
           modules = [
             { nixpkgs.hostPlatform = systemWSL; }
             nixos-wsl.nixosModules.default
             ./hosts/wsl/configuration.nix
-            
+
             # Home Manager integrated module
             home-manager.nixosModules.home-manager
             {
@@ -72,8 +89,12 @@
       darwinConfigurations = {
         macbook = nix-darwin.lib.darwinSystem {
           system = systemMac;
-          specialArgs = { inherit inputs pkgsMac; };
+          specialArgs = { inherit inputs; };
           modules = [
+            # Use our nixpkgs for user-facing packages; nix-darwin's own
+            # pinned nixpkgs handles its internal builds (see input above).
+            { nixpkgs.pkgs = pkgsMac; }
+
             ./hosts/mac/default.nix
 
             # nix-homebrew: adopt the existing /opt/homebrew
@@ -99,5 +120,45 @@
           ];
         };
       };
+
+      formatter = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        pkgs.writeShellApplication {
+          name = "nixfmt-wrapper";
+          runtimeInputs = [
+            pkgs.nixfmt
+            pkgs.findutils
+          ];
+          text = ''
+            find "$@" -type f -name "*.nix" -exec nixfmt {} +
+          '';
+        }
+      );
+
+      checks = forAllSystems (system: {
+        pre-commit = git-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            nixfmt.enable = true;
+            statix.enable = true;
+            deadnix = {
+              enable = true;
+              settings.noLambdaArg = true;
+              settings.noLambdaPatternNames = true;
+            };
+            shellcheck.enable = true;
+          };
+        };
+      });
+
+      devShells = forAllSystems (system: {
+        default = nixpkgs.legacyPackages.${system}.mkShell {
+          inherit (self.checks.${system}.pre-commit) shellHook;
+          buildInputs = self.checks.${system}.pre-commit.enabledPackages;
+        };
+      });
     };
 }

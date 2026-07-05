@@ -27,7 +27,7 @@ while [[ $# -gt 0 ]]; do
         # instead of forcibly scanning the entire directory (which includes vendor/ and causes fatal errors).
         :
     elif [[ "$arg" == "$PWD/"* ]]; then
-        ARGS+=("${arg#$PWD/}")
+        ARGS+=("${arg#"$PWD/"}")
     else
         ARGS+=("$arg")
     fi
@@ -43,7 +43,7 @@ else
 fi
 
 # Run the command inside the docker container
-docker-compose run --rm -T --no-deps "$CONTAINER_NAME" $CMD "${ARGS[@]}"
+docker-compose run --rm -T --no-deps "$CONTAINER_NAME" "$CMD" "${ARGS[@]}"
 EXIT_CODE=$?
 
 # Move the junit log from the docker-accessible relative path to the Mac absolute path Neotest expects

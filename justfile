@@ -8,10 +8,10 @@ default:
 update:
 	nix flake update
 	@if [ "$(uname)" = "Darwin" ]; then \
-		sudo darwin-rebuild switch --flake ~/Projects/nix-config#macbook && \
+		sudo darwin-rebuild switch --flake {{justfile_directory()}}#macbook && \
 		brew update && brew upgrade && brew cleanup; \
 	elif [ "$(uname)" = "Linux" ]; then \
-		sudo nixos-rebuild switch --flake ~/Projects/nix-config#nixos-wsl; \
+		sudo nixos-rebuild switch --flake {{justfile_directory()}}#nixos-wsl; \
 	fi
 	mise up
 
@@ -52,3 +52,19 @@ install-fonts-windows:
 		Remove-Item -Recurse -Force $TempDir;
 		Write-Host "Fonts installed successfully!"
 	'
+
+# Format all Nix files
+fmt:
+	cd {{justfile_directory()}} && nix fmt .
+
+# Run flake checks (formatting, statix, deadnix, shellcheck, pre-commit)
+check:
+	cd {{justfile_directory()}} && nix flake check
+
+# Enter dev shell (installs the git pre-commit hook on first entry)
+dev:
+	cd {{justfile_directory()}} && nix develop
+
+# Garbage-collect generations older than 14 days
+gc:
+	nix-collect-garbage --delete-older-than 14d

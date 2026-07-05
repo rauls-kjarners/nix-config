@@ -10,3 +10,8 @@ result-*
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Dev shell / pre-commit (generated symlink) and direnv
+.pre-commit-config.yaml
+.direnv/
+.pre-commit-config.json
