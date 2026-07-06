@@ -47,6 +47,11 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.yaml" },
         { import = "lazyvim.plugins.extras.lang.json" },
         { import = "lazyvim.plugins.extras.lang.docker" },
+        { import = "lazyvim.plugins.extras.lang.vue" },
+        { import = "lazyvim.plugins.extras.lang.tailwind" },
+
+        -- Linting
+        { import = "lazyvim.plugins.extras.linting.eslint" },
 
         -- Formatting + UI
         { import = "lazyvim.plugins.extras.formatting.prettier" },

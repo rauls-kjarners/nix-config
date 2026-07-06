@@ -1,5 +1,7 @@
 # Add ~/.local/bin to PATH for external tools (php-lsp, etc)
 fish_add_path -gP ~/.local/bin
+# Add Neovim/Mason LSPs to PATH so 'omp' can auto-detect them natively
+fish_add_path -gP ~/.local/share/nvim/mason/bin
 
 # Add Homebrew's keg-only libpq to PATH for macOS (for psql / vim-dadbod)
 if test -d /opt/homebrew/opt/libpq/bin

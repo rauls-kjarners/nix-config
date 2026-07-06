@@ -72,7 +72,6 @@
       upgrade = false;
     };
     taps = [
-      "dimentium/autoraise"
       "buo/cask-upgrade"
       "github/gh"
       "cormacrelf/tap"
@@ -86,7 +85,6 @@
     ];
     casks = [
       "appcleaner"
-      "autoraiseapp"
       "betterdisplay"
       "copilot-cli"
       "cyberduck"

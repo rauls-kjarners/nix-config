@@ -18,7 +18,6 @@ update:
 # Bootstrap development environment
 bootstrap-ai:
 	mise install
-	mise exec -- omp plugin install pyright intelephense
 	mkdir -p ~/.omp/skills ~/.omp/agent/skills
 	mise exec -- skills add mattpocock/skills@grill-me -a pi -g -y
 	mise exec -- skills add juliusbrussee/caveman@caveman -a pi -g -y

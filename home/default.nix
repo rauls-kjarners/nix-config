@@ -77,9 +77,10 @@
     bun
     go
     cargo
+    uv
     phpactor
     gopls
-    uv
+    nil
   ];
 
   programs.home-manager.enable = true;
