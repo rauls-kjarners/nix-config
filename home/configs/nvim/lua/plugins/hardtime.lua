@@ -10,5 +10,11 @@ return {
             ["h"] = false,
             ["-"] = { "n", "x" },
         },
+        disabled_keys = {
+            ["<Up>"] = false,
+            ["<Down>"] = false,
+            ["<Left>"] = false,
+            ["<Right>"] = false,
+        },
     },
 }

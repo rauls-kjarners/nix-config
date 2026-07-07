@@ -15,10 +15,10 @@ return {
                                 border = "none",
                                 backdrop = false,
                                 height = 0,
-                                width = 60,
+                                width = 50,
                                 { win = "input", height = 1, border = "bottom" },
                                 { win = "list", border = "none" },
-                                { win = "preview", title = "{preview}", height = 0.5, border = "top" },
+                                { win = "preview", title = "{preview}", height = 30, border = "top" },
                             },
                         },
                     }, -- <leader>e (File Explorer)
@@ -83,6 +83,9 @@ return {
                 },
             },
             styles = {
+                terminal = {
+                    height = 30,
+                },
                 lazygit = {
                     width = 0,
                     height = 0,

@@ -94,3 +94,11 @@ if status is-interactive
     end
 
 end
+
+# ====================
+# Local Untracked Config
+# ====================
+# Create ~/.config/fish/local.fish on your machine for private env vars/aliases
+if test -f ~/.config/fish/local.fish
+    source ~/.config/fish/local.fish
+end
