@@ -6,6 +6,7 @@ return {
                 sources = {
                     explorer = {
                         hidden = true,
+                        ignored = true,
                         layout = {
                             preview = true,
                             layout = {
@@ -21,8 +22,9 @@ return {
                             },
                         },
                     }, -- <leader>e (File Explorer)
-                    files = { hidden = true }, -- <leader>ff (Find Files)
-                    smart = { hidden = true }, -- <leader><space> (Smart Find Files)
+                    files = { hidden = true, ignored = true }, -- <leader>ff (Find Files)
+                    smart = { hidden = true, ignored = true }, -- <leader><space> (Smart Find Files)
+                    grep = { hidden = true, ignored = true }, -- <leader>sg (Live Grep)
                 },
             },
             terminal = {

@@ -22,8 +22,8 @@ function switch_theme --description "Switch system themes between dark and light
         # else: file exists but theme line doesn't match — fall through to re-apply
     end
 
-    # Use the absolute path to the dotfiles repo since realpath breaks inside the Nix store
-    set -l _dotfiles "$HOME/Projects/nix-config/home/configs"
+    # Use the absolute path to the dotfiles repo from the Nix-injected environment variable
+    set -l _dotfiles "$FLAKE_PATH/home/configs"
 
     # Use the global user gitconfig (not the tracked dotfile repo copy)
     set -l gitconfig "$HOME/.gitconfig"

@@ -5,6 +5,9 @@
   ...
 }:
 
+let
+  flakePath = "${config.home.homeDirectory}/Projects/nix-config";
+in
 {
   # Core packages for both platforms
   home.packages = with pkgs; [
@@ -174,7 +177,7 @@
     enable = true;
     shellAliases = {
       # System update command
-      update = "just -f ~/Projects/nix-config/justfile update";
+      update = "just -f ${flakePath}/justfile update";
 
       # Core tools overrides
       cat = "bat";
@@ -214,8 +217,9 @@
 
   # Symlink static dotfiles into ~/.config/ (Dynamic configs are built by switch_theme.fish)
   xdg.configFile = {
-    "fish/functions".source = ./configs/fish/functions;
-    "nvim".source = ./configs/nvim;
+    "fish/functions".source =
+      config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/fish/functions";
+    "nvim".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/nvim";
     "tridactyl/themes".source = ./configs/tridactyl/themes;
     "tridactyl/tridactylrc".text = ''
       ${builtins.readFile ./configs/tridactyl/tridactylrc}
@@ -235,7 +239,7 @@
           ""
       }
     '';
-    "wezterm".source = ./configs/wezterm;
+    "wezterm".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/wezterm";
     "phpactor".source = ./configs/phpactor;
     "glamour".source = ./configs/glamour;
     "mise".source = ./configs/mise;
@@ -243,15 +247,24 @@
 
   # Home root symlinks
   home.file = {
-    ".ideavimrc".source = ./configs/ideavim/.ideavimrc;
+    ".ideavimrc".source =
+      config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/ideavim/.ideavimrc";
     ".local/bin/neotest-remote".source = ./configs/bin/neotest-remote;
     ".markdownlint-cli2.yaml".source = ./configs/markdownlint/.markdownlint-cli2.yaml;
 
     # Custom AI Agents & Global Rules
-    ".omp/agent/RULES.md".source = ./configs/omp/RULES.md;
-    ".claude/CLAUDE.md".source = ./configs/claude/CLAUDE.md;
-    ".claude/agents".source = ./configs/claude/agents;
-    ".gemini/config/AGENTS.md".source = ./configs/antigravity/AGENTS.md;
+    ".omp/agent/RULES.md".source =
+      config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/omp/RULES.md";
+    ".claude/CLAUDE.md".source =
+      config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/claude/CLAUDE.md";
+    ".claude/agents".source =
+      config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/claude/agents";
+    ".gemini/config/AGENTS.md".source =
+      config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/antigravity/AGENTS.md";
+  };
+
+  home.sessionVariables = {
+    FLAKE_PATH = flakePath;
   };
 
   home.stateVersion = "23.11";
