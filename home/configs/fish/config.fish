@@ -3,13 +3,6 @@ fish_add_path -gP ~/.local/bin
 # Add Neovim/Mason LSPs to PATH so 'omp' can auto-detect them natively
 fish_add_path -gP ~/.local/share/nvim/mason/bin
 
-# Add Homebrew's keg-only libpq to PATH for macOS (for psql / vim-dadbod)
-if test -d /opt/homebrew/opt/libpq/bin
-    fish_add_path -gP -a /opt/homebrew/opt/libpq/bin
-else if test -d /usr/local/opt/libpq/bin
-    fish_add_path -gP -a /usr/local/opt/libpq/bin
-end
-
 if type -q mise
     mise activate fish | source
 end
@@ -41,7 +34,7 @@ if status is-interactive
     # The OS-level daemon (launchd/systemd) live-switches open shells when appearance changes,
     # but new shell instances need to check the OS state on startup to match.
     set -l _desired_theme light
-    
+
     if test (uname) = Darwin
         if defaults read -g AppleInterfaceStyle >/dev/null 2>&1
             set _desired_theme dark
@@ -50,13 +43,13 @@ if status is-interactive
         if type -q gdbus
             # Query Freedesktop portal for color-scheme (1=Dark, 2=Light, 0=Default)
             set -l _os_theme (gdbus call --session --dest=org.freedesktop.portal.Desktop --object-path=/org/freedesktop/portal/desktop --method=org.freedesktop.portal.Settings.Read org.freedesktop.appearance color-scheme 2>/dev/null | awk -F'uint32 ' '{print $2}' | tr -d '>,)')
-            if test "$_os_theme" = "1"
+            if test "$_os_theme" = 1
                 set _desired_theme dark
             end
         else if type -q powershell.exe
             # We are on WSL, query the Windows registry directly!
             set -l _os_theme (powershell.exe -NoProfile -Command "Get-ItemPropertyValue -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' -Name 'AppsUseLightTheme'" 2>/dev/null | tr -d '\r\n')
-            if test "$_os_theme" = "0"
+            if test "$_os_theme" = 0
                 set _desired_theme dark
             end
         end
@@ -84,7 +77,7 @@ if status is-interactive
     if type -q zoxide
         zoxide init fish --cmd cd | source
     end
-    
+
     if type -q atuin
         atuin init fish | source
     end

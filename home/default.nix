@@ -65,7 +65,7 @@ in
     k9s
     lazysql
     pgcli
-    libpq
+    postgresql_18
     sqlite
     redis
     kubernetes-helm
@@ -229,7 +229,7 @@ in
       ${
         if pkgs.stdenv.isDarwin then
           ''
-            set editorcmd /opt/homebrew/bin/wezterm start --always-new-process -- /opt/homebrew/bin/fish -lc 'nvim "%f"; open -a Zen'
+            set editorcmd /opt/homebrew/bin/wezterm start --always-new-process -- ${pkgs.fish}/bin/fish -lc 'nvim "%f"; open -a Zen'
           ''
         else if pkgs.stdenv.isLinux then
           ''
