@@ -64,6 +64,11 @@ config.keys = {
         action = wezterm.action.SendString("\x1b[13;2u"),
     },
     {
+        key = ";",
+        mods = "CTRL",
+        action = wezterm.action.SendString("\x1b[59;5u"),
+    },
+    {
         key = "Enter",
         mods = "ALT",
         action = wezterm.action.ToggleFullScreen,

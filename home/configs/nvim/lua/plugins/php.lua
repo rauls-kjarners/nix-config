@@ -28,6 +28,7 @@ return {
                 opts.servers.intelephense.settings = {
                     intelephense = {
                         environment = {
+                            phpVersion = "8.4",
                             includePaths = {
                                 "vendor/rector/rector/vendor/rector",
                                 "var/cache/dev/Symfony/Config",
@@ -85,13 +86,12 @@ return {
         end,
     },
 
-    -- 3. php-cs-fixer as formatter (via conform)
+    -- 3. Disable php-cs-fixer
     {
         "stevearc/conform.nvim",
         opts = function(_, opts)
             opts.formatters_by_ft = opts.formatters_by_ft or {}
-            -- Falls back to vendor/bin/php-cs-fixer or global install
-            opts.formatters_by_ft.php = { "php_cs_fixer" }
+            opts.formatters_by_ft.php = {}
             return opts
         end,
     },
