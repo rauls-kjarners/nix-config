@@ -16,7 +16,6 @@ in
     zellij
 
     # Git & CLI Utilities
-    gcc
     gnumake
     git
     lazygit
@@ -37,13 +36,15 @@ in
     jira-cli-go
     just
     mise
-    markdownlint-cli2
     pre-commit
     shellcheck
     gnused
     coreutils
-    unison
     _7zz
+    imagemagick
+    ghostscript
+    mermaid-cli
+    tectonic
 
     # Data Processors
     jq
@@ -55,10 +56,12 @@ in
     wget
     curl
     gzip
-    jre_headless
     python3
     luarocks
     stylua
+    markdownlint-cli2
+    statix
+    nixfmt-rfc-style
 
     # Containers, Kubernetes & Cloud
     lazydocker

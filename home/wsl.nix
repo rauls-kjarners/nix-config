@@ -6,6 +6,11 @@
   home.username = "nixos";
   home.homeDirectory = "/home/nixos";
 
+  # WSL-only packages (would conflict with macOS Xcode CLT)
+  home.packages = with pkgs; [
+    gcc
+  ];
+
   # Bridge to Windows OneDrive for Obsidian (WSL-only)
   home.file."OneDrive/vaults".source =
     config.lib.file.mkOutOfStoreSymlink "/mnt/c/Users/rauls/OneDrive/vaults";
