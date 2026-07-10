@@ -44,6 +44,7 @@ To provide a seamless, `topgrade`-like experience while adhering to strict Nix d
 - **`just fmt`**: Format all Nix files with `nixfmt` (RFC-166 style).
 - **`just check`**: Run `nix flake check` — exercises nixfmt, statix, deadnix, and shellcheck via the pre-commit check output.
 - **`just dev`**: Enter the dev shell; installs the git pre-commit hook on first entry so hooks run automatically on every `git commit`.
+- **`just clean-nvim`**: Wipes Neovim data and cache directories (`~/.local/share/nvim`, etc.) to quickly fix LSP/Mason corruption, while leaving your config symlink intact.
 - **`just gc`**: Garbage-collect Nix store generations older than 14 days.
 - **`just bootstrap-ai`**: A one-time command that runs `mise install`, natively loads your OMP plugins (`pyright`, `intelephense`), and injects your custom AI skills.
 - **`just symlink-windows`**: A purely automated Windows bootstrapping command. From WSL, it triggers a native Windows UAC Administrator prompt on your desktop to automatically generate the complex UNC symlinks for WezTerm and Zen Browser!

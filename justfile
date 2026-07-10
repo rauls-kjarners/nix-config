@@ -68,3 +68,12 @@ dev:
 # Garbage-collect generations older than 14 days
 gc:
 	nix-collect-garbage --delete-older-than 14d
+
+# Wipe Neovim data and cache directories (fixes LazyVim/LSP corruption)
+clean-nvim:
+	#!/usr/bin/env bash
+	echo "Removing Neovim data and cache directories..."
+	rm -rf ~/.local/share/nvim
+	rm -rf ~/.local/state/nvim
+	rm -rf ~/.cache/nvim
+	echo "Neovim state wiped! (Your ~/.config/nvim remains intact)"
