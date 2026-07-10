@@ -74,3 +74,6 @@ map("n", "<leader>cM", function()
     vim.api.nvim_echo({}, false, {})
     vim.cmd.checktime()
 end, { desc = "Phpactor: Move Class" })
+
+-- Terminal toggle workaround (Ctrl+/ translates to Ctrl+- via WezTerm/Herdr)
+map({ "n", "i", "t" }, "<C-->", function() Snacks.terminal() end, { desc = "Toggle Terminal" })

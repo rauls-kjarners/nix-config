@@ -14,6 +14,7 @@ in
     # Editors & Multiplexers
     neovim
     zellij
+    herdr
 
     # Git & CLI Utilities
     gnumake
@@ -246,6 +247,8 @@ in
     "phpactor".source = ./configs/phpactor;
     "glamour".source = ./configs/glamour;
     "mise".source = ./configs/mise;
+    "herdr/config.toml".source =
+      config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/herdr/config.toml";
   };
 
   # Home root symlinks

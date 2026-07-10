@@ -79,14 +79,7 @@ config.keys = {
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.font_size = 10.0
     -- Launch NixOS by default on Windows
-    config.default_domain = "WSL:NixOS"
-    config.wsl_domains = {
-        {
-            name = "WSL:NixOS",
-            distribution = "NixOS",
-            username = "nixos",
-        },
-    }
+    config.default_prog = { "wsl.exe", "-d", "NixOS", "--cd", "~" }
     -- Windows: Ctrl+Backspace to delete previous word (Ctrl+W)
     table.insert(config.keys, {
         key = "Backspace",
