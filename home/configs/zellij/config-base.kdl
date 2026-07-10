@@ -12,6 +12,7 @@ theme_dark "dracula"
 theme_light "alucard"
 
 // UI
+default_layout "compact"
 pane_frames true
 copy_on_select true
 scroll_buffer_size 10000
@@ -28,7 +29,7 @@ keybinds {
     shared_except "locked" {
         // Unbind Zellij's default Alt+Arrow pane movement so Neovim can use them
         unbind "Alt Left" "Alt Down" "Alt Up" "Alt Right"
-        
+
         // Remap to j=left  k=down  l=up  ;=right
         bind "Alt j" { MoveFocusOrTab "Left"; }
         bind "Alt k" { MoveFocus "Down"; }
@@ -45,6 +46,13 @@ keybinds {
         bind "Alt 7" { GoToTab 7; }
         bind "Alt 8" { GoToTab 8; }
         bind "Alt 9" { GoToTab 9; }
+
+        // zellij-forgot cheat sheet. Alt+/ avoids LazyVim conflicts (which uses Ctrl+/ for float term)
+        bind "Alt /" {
+            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij_forgot.wasm" {
+                floating true
+            }
+        }
     }
     pane {
         unbind "h" "j" "k" "l"

@@ -61,7 +61,7 @@ in
     stylua
     markdownlint-cli2
     statix
-    nixfmt-rfc-style
+    nixfmt
 
     # Containers, Kubernetes & Cloud
     lazydocker
@@ -268,6 +268,7 @@ in
 
   home.sessionVariables = {
     FLAKE_PATH = flakePath;
+    HOMEBREW_NO_AUTO_UPDATE = "1";
   };
 
   home.stateVersion = "23.11";

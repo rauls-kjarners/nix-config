@@ -41,6 +41,7 @@ just update
 To provide a seamless, `topgrade`-like experience while adhering to strict Nix developer standards, this repository uses a unified `justfile`:
 
 - **`just update`**: The daily driver. Automatically runs `nix flake update`, rebuilds your NixOS/Darwin system, and finishes with `mise up` to ensure rapidly-iterating AI tools are updated simultaneously.
+- **`just fetch-zj-plugins`**: Download Zellij WASM plugins locally (avoids tracking binaries in Git).
 - **`just fmt`**: Format all Nix files with `nixfmt` (RFC-166 style).
 - **`just check`**: Run `nix flake check` — exercises nixfmt, statix, deadnix, and shellcheck via the pre-commit check output.
 - **`just dev`**: Enter the dev shell; installs the git pre-commit hook on first entry so hooks run automatically on every `git commit`.
