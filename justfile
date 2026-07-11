@@ -15,6 +15,27 @@ update:
 	fi
 	mise up
 
+# Bootstrap Neovim configuration
+setup-nvim:
+	#!/usr/bin/env bash
+	set -e
+	echo "Setting up Neovim configuration..."
+	if [ ! -d "{{justfile_directory()}}/../nvim-config" ]; then
+		git clone https://github.com/rauls-kjarners/nvim-config.git "{{justfile_directory()}}/../nvim-config"
+	else
+		echo "Repo already exists at {{justfile_directory()}}/../nvim-config"
+	fi
+
+	# Safely remove existing symlink or backup existing folder
+	if [ -L "$HOME/.config/nvim" ]; then
+		rm "$HOME/.config/nvim"
+	elif [ -d "$HOME/.config/nvim" ]; then
+		mv "$HOME/.config/nvim" "$HOME/.config/nvim.bak"
+	fi
+
+	ln -s "{{justfile_directory()}}/../nvim-config" "$HOME/.config/nvim"
+	echo "Neovim config cloned and symlinked!"
+
 # Bootstrap development environment
 bootstrap-ai:
 	mise install

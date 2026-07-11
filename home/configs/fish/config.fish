@@ -91,7 +91,7 @@ end
 # ====================
 # Local Untracked Config
 # ====================
-# Create ~/.config/fish/local.fish on your machine for private env vars/aliases
+# Create ~/.config/fish/local.fish on the local machine for private env vars/aliases
 if test -f ~/.config/fish/local.fish
     source ~/.config/fish/local.fish
 end

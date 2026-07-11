@@ -223,7 +223,6 @@ in
   xdg.configFile = {
     "fish/functions".source =
       config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/fish/functions";
-    "nvim".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/nvim";
     "tridactyl/themes".source = ./configs/tridactyl/themes;
     "tridactyl/tridactylrc".text = ''
       ${builtins.readFile ./configs/tridactyl/tridactylrc}
@@ -253,8 +252,6 @@ in
 
   # Home root symlinks
   home.file = {
-    ".ideavimrc".source =
-      config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/ideavim/.ideavimrc";
     ".local/bin/neotest-remote".source = ./configs/bin/neotest-remote;
     ".markdownlint-cli2.yaml".source = ./configs/markdownlint/.markdownlint-cli2.yaml;
 
