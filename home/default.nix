@@ -88,6 +88,15 @@ in
     phpactor
     gopls
     nil
+
+    # AI Tools
+    (writeShellScriptBin "agy" ''
+      if [ ! -f ~/.local/bin/agy ]; then
+        echo "Installing agy..."
+        curl -fsSL https://antigravity.google/cli/install.sh | bash -s -- --dir ~/.local/bin
+      fi
+      exec ~/.local/bin/agy "$@"
+    '')
   ];
 
   programs.home-manager.enable = true;
