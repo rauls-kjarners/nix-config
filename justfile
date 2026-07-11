@@ -15,11 +15,6 @@ update:
 	fi
 	mise up
 
-# Fetch Zellij WASM plugins
-fetch-zj-plugins:
-	mkdir -p ~/.config/zellij/plugins
-	curl -L -o ~/.config/zellij/plugins/zellij_forgot.wasm "https://github.com/karimould/zellij-forgot/releases/latest/download/zellij_forgot.wasm"
-
 # Bootstrap development environment
 bootstrap-ai:
 	mise install

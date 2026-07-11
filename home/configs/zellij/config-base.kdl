@@ -46,13 +46,6 @@ keybinds {
         bind "Alt 7" { GoToTab 7; }
         bind "Alt 8" { GoToTab 8; }
         bind "Alt 9" { GoToTab 9; }
-
-        // zellij-forgot cheat sheet. Alt+/ avoids LazyVim conflicts (which uses Ctrl+/ for float term)
-        bind "Alt /" {
-            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij_forgot.wasm" {
-                floating true
-            }
-        }
     }
     pane {
         unbind "h" "j" "k" "l"

@@ -278,7 +278,6 @@ function switch_theme --description "Switch system themes between dark and light
     if test -f "$_dotfiles/zellij/config-base.kdl"
         mkdir -p "$HOME/.config/zellij"
         cp -r "$_dotfiles/zellij/themes" "$HOME/.config/zellij/" 2>/dev/null
-        cp -r "$_dotfiles/zellij/plugins" "$HOME/.config/zellij/" 2>/dev/null
         set -l _zj_cfg "$HOME/.config/zellij/config.kdl"
         set -l _zj_tmp (mktemp)
         string replace -r -- '^theme .*' "theme \"$zellij_theme\"" <"$_dotfiles/zellij/config-base.kdl" >"$_zj_tmp"
