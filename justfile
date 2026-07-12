@@ -19,22 +19,16 @@ update:
 setup-nvim:
 	#!/usr/bin/env bash
 	set -e
-	echo "Setting up Neovim configuration..."
 	if [ ! -d "{{justfile_directory()}}/../nvim-config" ]; then
 		git clone https://github.com/rauls-kjarners/nvim-config.git "{{justfile_directory()}}/../nvim-config"
-	else
-		echo "Repo already exists at {{justfile_directory()}}/../nvim-config"
 	fi
-
 	# Safely remove existing symlink or backup existing folder
 	if [ -L "$HOME/.config/nvim" ]; then
 		rm "$HOME/.config/nvim"
 	elif [ -d "$HOME/.config/nvim" ]; then
 		mv "$HOME/.config/nvim" "$HOME/.config/nvim.bak"
 	fi
-
 	ln -s "{{justfile_directory()}}/../nvim-config" "$HOME/.config/nvim"
-	echo "Neovim config cloned and symlinked!"
 
 # Bootstrap development environment
 bootstrap-ai:
@@ -53,7 +47,6 @@ symlink-windows:
 # Download and install JetBrains Mono Nerd Font natively on Windows
 install-fonts-windows:
 	#!/usr/bin/env bash
-	echo "Fetching latest JetBrains Mono Nerd Font release from GitHub..."
 	powershell.exe -NoProfile -Command '
 		$ErrorActionPreference = "Stop";
 		$tag = (Invoke-RestMethod https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest).tag_name;
@@ -90,11 +83,9 @@ dev:
 gc:
 	nix-collect-garbage --delete-older-than 14d
 
-# Wipe Neovim data and cache directories (fixes LazyVim/LSP corruption)
+# Wipe Neovim data and cache directories (fixes state corruption)
 clean-nvim:
 	#!/usr/bin/env bash
-	echo "Removing Neovim data and cache directories..."
 	rm -rf ~/.local/share/nvim
 	rm -rf ~/.local/state/nvim
 	rm -rf ~/.cache/nvim
-	echo "Neovim state wiped! (Your ~/.config/nvim remains intact)"

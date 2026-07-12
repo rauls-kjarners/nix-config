@@ -34,7 +34,7 @@ just update
 
 - `hosts/`: OS-level configurations (`nixos-wsl` for Windows, `macbook` for macOS).
 - `home/`: OS-agnostic User environment (`home-manager`). Manages all packages, aliases, git, shell plugins, and dotfiles.
-- `home/configs/`: The raw dotfiles (`wezterm`, `yazi`, `zellij`) that are seamlessly symlinked into `~/.config/` by Home Manager.
+- `home/configs/`: The raw dotfiles (WezTerm, Yazi, Zellij, etc.) seamlessly symlinked into `~/.config/` by Home Manager.
 
 ## 🤖 Unified System Automation (Justfile)
 
@@ -44,9 +44,9 @@ To provide a seamless, `topgrade`-like experience while adhering to strict Nix d
 - **`just setup-nvim`**: Bootstraps the editor environment by cloning the decoupled `nvim-config` repository into `~/Projects` and symlinking it to `~/.config/nvim`.
 - **`just fmt`**: Format all Nix files with `nixfmt` (RFC-166 style).
 - **`just check`**: Run `nix flake check` — exercises nixfmt, statix, deadnix, and shellcheck via the pre-commit check output.
-- **`just clean-nvim`**: Wipes Neovim data and cache directories (`~/.local/share/nvim`, etc.) to quickly fix LSP/Mason corruption, while leaving the config symlink intact.
+- **`just clean-nvim`**: Wipes Neovim data and cache directories (`~/.local/share/nvim`, etc.) to quickly fix state corruption, while leaving the config symlink intact.
 - **`just bootstrap-ai`**: A one-time command that runs `mise install`, natively loads OMP plugins (`pyright`, `intelephense`), and injects custom AI skills.
-- **`just symlink-windows`**: A purely automated Windows bootstrapping command. From WSL, it triggers a native Windows UAC Administrator prompt on the desktop to automatically generate the complex UNC symlinks for WezTerm and Zen Browser!
+- **`just symlink-windows`**: A purely automated Windows bootstrapping command. From WSL, it triggers a native Windows UAC Administrator prompt on the desktop to automatically generate UNC symlinks for WezTerm and Tridactyl (Firefox/Zen Browser).
 - **`just install-fonts-windows`**: Automatically reaches into the Windows host, fetches the latest JetBrains Mono Nerd Font from GitHub, and natively installs it into the Windows Registry.
 
 ## 🖥️ Host Terminals & Theme Switching
@@ -74,16 +74,16 @@ _Note for Tridactyl Users:_
 ### macOS GUI Apps
 
 macOS is fully POSIX-compliant, meaning Home Manager's native `~/.config` symlinks work perfectly out of the box for GUI applications like Tridactyl and WezTerm.
-For Tridactyl, simply run `:installnative` in the browser and paste the provided `curl` command into the terminal. The native messenger will instantly detect the Nix configuration at `~/.config/tridactyl/tridactylrc`. No Windows-style workarounds are required!
+For Tridactyl, simply run `:installnative` in the browser and paste the provided `curl` command into the terminal. The native messenger will instantly detect the Nix configuration at `~/.config/tridactyl/tridactylrc`. No Windows-style workarounds are required.
 
 ### Theme Switching
 
 This setup uses a dual-layer theme switching architecture:
 
 1. **Terminal GUI**: WezTerm has native capabilities to query the host OS (macOS/Windows) for Dark/Light mode and switch its window background colors automatically.
-2. **CLI Tools (Neovim, Zellij, Bat, Btop, K9s)**: The `switch_theme dark|light` fish function dynamically rewrites all CLI configs in place. Both platforms drive it automatically:
+2. **CLI Tools (Neovim, Zellij, Bat, Btop, K9s)**: The `switch_theme dark|light` fish function dynamically rewrites all CLI configs in place. Both platforms drive it:
    - **macOS**: `dark-notify` (installed via `cormacrelf/tap`) runs as a `launchd` user agent; it invokes `switch_theme <mode>` immediately on startup and on every System Settings → Appearance change.
-   - **WSL**: A systemd user timer (`theme-sync`) polls the Windows registry (`AppsUseLightTheme`) every 10 seconds and calls `switch_theme` when the mode changes. No manual intervention needed.
+   - **WSL**: Checks the Windows registry (`AppsUseLightTheme`) once on shell startup. For live updates while the shell is running, use the manual `dark` and `light` aliases.
 3. **Containers (WSL)**: Rootless podman provides the Docker-compat socket at `$DOCKER_HOST` (`unix:///run/user/<uid>/podman/podman.sock`), powering `lazydocker` and `k9s` without a Docker daemon.
 
 > **macOS cleanup**: If `dark-mode-notify` was previously installed manually at `/opt/homebrew/bin/dark-mode-notify`, it can be removed — `dark-notify` replaces it and is now declared in Homebrew.
