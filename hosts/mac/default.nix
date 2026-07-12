@@ -58,6 +58,13 @@
   system.primaryUser = "rauls.kjarners";
   system.stateVersion = 6;
 
+  system.defaults = {
+    NSGlobalDomain = {
+      KeyRepeat = 2; # Exact Windows max (33ms)
+      InitialKeyRepeat = 15; # Exact Windows max (250ms)
+    };
+  };
+
   # Native macOS Fonts
   fonts.packages = [
     pkgs.nerd-fonts.jetbrains-mono
