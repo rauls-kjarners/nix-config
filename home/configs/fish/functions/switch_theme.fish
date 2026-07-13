@@ -10,9 +10,9 @@ function switch_theme --description "Switch system themes between dark and light
     # (guards against persisted-but-broken state where _switch_theme_active is set
     # but the on-disk configs hold empty values from a previous bad write).
     if test "$theme" = "$_switch_theme_active"
-        set -l _expected_zj_theme dracula
+        set -l _expected_zj_theme gruvbox-dark
         if test "$theme" = light
-            set _expected_zj_theme alucard
+            set _expected_zj_theme gruvbox-light
         end
         if not test -f "$HOME/.config/zellij/config.kdl"
             # Config missing — fall through to (re)create it
@@ -38,97 +38,93 @@ function switch_theme --description "Switch system themes between dark and light
     # vars are erased when the if/else closes and are invisible to the Apply section.
     # ---------------------------------------------------------------------------
     if test "$theme" = dark
-        # Dracula Dark palette
-        set -f p_normal F8F8F2
-        set -f p_command 8BE9FD
-        set -f p_keyword FF79C6
-        set -f p_quote F1FA8C
-        set -f p_redirect 8BE9FD
-        set -f p_end FF79C6
-        set -f p_error FF5555
-        set -f p_param BD93F9
-        set -f p_comment 6272A4
-        set -f p_match_bg brblue
-        set -f p_sel_bg brblack
-        set -f p_search_fg bryellow
-        set -f p_operator 50FA7B
-        set -f p_escape FF79C6
-        set -f p_cwd 50FA7B
-        set -f p_cwd_root red
-        set -f p_autosugg 6272A4
-        set -f p_user brgreen
-        set -f p_host normal
-        set -f p_pager_desc B3A06D
-        set -f p_pager_prog_fg brwhite
-        set -f p_pager_prog_bg cyan
-        set -f p_pager_compl normal
-        set -f p_pager_sel_bg brblack
-        set -f fzf_opts "--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4"
-        set -f h_pwd bd93f9
-        set -f h_git 50fa7b
-        set -f h_error ff5555
-        set -f h_prompt ff79c6
-        set -f h_duration f1fa8c
-        set -f bat_theme Dracula
-        set -f delta_feature dracula
+        # Gruvbox Material Dark (Hard)
+        set -f p_normal e2cca9
+        set -f p_command 89b482
+        set -f p_keyword d3869b
+        set -f p_quote d8a657
+        set -f p_redirect e2cca9
+        set -f p_end e78a4e
+        set -f p_error ea6962
+        set -f p_param 7daea3
+        set -f p_comment 928374
+        set -f p_match_bg 3c3836
+        set -f p_sel_bg 504945
+        set -f p_search_fg e2cca9
+        set -f p_operator e78a4e
+        set -f p_escape d3869b
+        set -f p_cwd 7daea3
+        set -f p_cwd_root ea6962
+        set -f p_autosugg 928374
+        set -f p_user a9b665
+        set -f p_host e2cca9
+        set -f p_pager_desc 928374
+        set -f p_pager_prog_fg e2cca9
+        set -f p_pager_prog_bg 3c3836
+        set -f p_pager_compl e2cca9
+        set -f p_pager_sel_bg 504945
+        set -f fzf_opts "--color=fg:#e2cca9,bg:#1d2021,hl:#89b482 --color=fg+:#e2cca9,bg+:#3c3836,hl+:#89b482 --color=info:#e78a4e,prompt:#89b482,pointer:#ea6962 --color=marker:#ea6962,spinner:#ea6962,header:#a9b665"
+        set -f h_pwd 7daea3
+        set -f h_git a9b665
+        set -f h_error ea6962
+        set -f h_prompt d3869b
+        set -f h_duration d8a657
+        set -f bat_theme gruvbox-dark
+        set -f delta_feature gruvbox-material-dark
         set -f delta_dark true
         set -f lazygit_theme "$_dotfiles/lazygit/theme-dark.yml"
         set -f lazydocker_theme "$_dotfiles/lazydocker/theme-dark.yml"
-        set -f zellij_theme dracula
+        set -f zellij_theme gruvbox-dark
         set -f yazi_theme "$_dotfiles/yazi/theme-dark.toml"
-        set -f btop_theme dracula
-        set -f k9s_skin dracula
+        set -f btop_theme gruvbox_material_dark
+        set -f k9s_skin gruvbox-material-dark
         set -f pgcli_theme "$_dotfiles/pgcli/theme-dark"
         set -f tealdeer_theme "$_dotfiles/tealdeer/theme-dark.toml"
-        set -f glamour_style "$_dotfiles/glamour/dracula.json"
-        set -f agy_color_scheme solarized dark
-
+        set -f glamour_style "$_dotfiles/glamour/gruvbox-material-dark.json"
     else
-        # Alucard Light palette
-        set -f p_normal 1F1F1F
-        set -f p_command 036A96
-        set -f p_keyword A3144D
-        set -f p_quote 846E15
-        set -f p_redirect 036A96
-        set -f p_end A3144D
-        set -f p_error CB3A2A
-        set -f p_param 644AC9
-        set -f p_comment 6C664B
-        set -f p_match_bg CFCFDE
-        set -f p_sel_bg CFCFDE
-        set -f p_search_fg 846E15
-        set -f p_operator 14710A
-        set -f p_escape A3144D
-        set -f p_cwd 14710A
-        set -f p_cwd_root CB3A2A
-        set -f p_autosugg 6C664B
-        set -f p_user 14710A
-        set -f p_host 1F1F1F
-        set -f p_pager_desc 846E15
-        set -f p_pager_prog_fg FFFBEB
-        set -f p_pager_prog_bg 036A96
-        set -f p_pager_compl 1F1F1F
-        set -f p_pager_sel_bg CFCFDE
-        set -f fzf_opts "--color=fg:#1f1f1f,bg:#fffbeb,hl:#644ac9 --color=fg+:#1f1f1f,bg+:#cfcfde,hl+:#644ac9 --color=info:#846e15,prompt:#14710a,pointer:#a3144d --color=marker:#a3144d,spinner:#846e15,header:#036a96"
-        set -f h_pwd 644ac9
-        set -f h_git 14710a
-        set -f h_error cb3a2a
-        set -f h_prompt a3144d
-        set -f h_duration 846e15
-        set -f bat_theme Alucard
-        set -f delta_feature alucard
+        # Gruvbox Material Light (Hard)
+        set -f p_normal 514036
+        set -f p_command 4c7a5d
+        set -f p_keyword 945e80
+        set -f p_quote b47109
+        set -f p_redirect 514036
+        set -f p_end c35e0a
+        set -f p_error c14a4a
+        set -f p_param 45707a
+        set -f p_comment 7c6f64
+        set -f p_match_bg f2e5bc
+        set -f p_sel_bg ebdbb2
+        set -f p_search_fg 514036
+        set -f p_operator c35e0a
+        set -f p_escape 945e80
+        set -f p_cwd 45707a
+        set -f p_cwd_root c14a4a
+        set -f p_autosugg 7c6f64
+        set -f p_user 6c782e
+        set -f p_host 514036
+        set -f p_pager_desc 7c6f64
+        set -f p_pager_prog_fg 514036
+        set -f p_pager_prog_bg f2e5bc
+        set -f p_pager_compl 514036
+        set -f p_pager_sel_bg ebdbb2
+        set -f fzf_opts "--color=fg:#514036,bg:#f9f5d7,hl:#45707a --color=fg+:#514036,bg+:#ebdbb2,hl+:#45707a --color=info:#c35e0a,prompt:#4c7a5d,pointer:#c14a4a --color=marker:#c14a4a,spinner:#c14a4a,header:#6c782e"
+        set -f h_pwd 45707a
+        set -f h_git 6c782e
+        set -f h_error c14a4a
+        set -f h_prompt 945e80
+        set -f h_duration b47109
+        set -f bat_theme gruvbox-light
+        set -f delta_feature gruvbox-material-light
         set -f delta_dark false
         set -f lazygit_theme "$_dotfiles/lazygit/theme-light.yml"
         set -f lazydocker_theme "$_dotfiles/lazydocker/theme-light.yml"
-        set -f zellij_theme alucard
+        set -f zellij_theme gruvbox-light
         set -f yazi_theme "$_dotfiles/yazi/theme-light.toml"
-        set -f btop_theme alucard
-        set -f k9s_skin dracula
+        set -f btop_theme gruvbox_light
+        set -f k9s_skin gruvbox-material-dark
         set -f pgcli_theme "$_dotfiles/pgcli/theme-light"
         set -f tealdeer_theme "$_dotfiles/tealdeer/theme-light.toml"
-        set -f glamour_style "$_dotfiles/glamour/alucard.json"
-        set -f agy_color_scheme solarized light
-
+        set -f glamour_style "$_dotfiles/glamour/gruvbox-material-light.json"
     end
 
     # ---------------------------------------------------------------------------
@@ -152,17 +148,6 @@ function switch_theme --description "Switch system themes between dark and light
 
     # Glamour (used by agy / Bubble Tea apps for markdown/diff rendering)
     _set_ux GLAMOUR_STYLE "$glamour_style"
-
-    # agy (Antigravity CLI) — colorScheme in antigravity-cli/settings.json
-    set -l _agy_settings "$HOME/.gemini/antigravity-cli/settings.json"
-    if test -f "$_agy_settings"
-        set -l _agy_tmp (mktemp)
-        if jq --arg s "$agy_color_scheme" '.colorScheme = $s' "$_agy_settings" >"$_agy_tmp" 2>/dev/null
-            mv "$_agy_tmp" "$_agy_settings"
-        else
-            rm -f "$_agy_tmp"
-        end
-    end
 
     # Git Delta
     git config --file "$gitconfig" delta.features "$delta_feature"
@@ -230,7 +215,10 @@ function switch_theme --description "Switch system themes between dark and light
 
     # Btop theme
     mkdir -p "$HOME/.config/btop/themes"
-    cp "$_dotfiles/btop/themes/"*.theme "$HOME/.config/btop/themes/" 2>/dev/null
+    set -l btop_themes "$_dotfiles/btop/themes/"*.theme
+    if set -q btop_themes[1]
+        cp $btop_themes "$HOME/.config/btop/themes/" 2>/dev/null
+    end
     if test -f "$_dotfiles/btop/btop-base.conf"
         set -l _btop_tmp (mktemp)
         if grep -q "^color_theme =" "$_dotfiles/btop/btop-base.conf"
@@ -246,7 +234,10 @@ function switch_theme --description "Switch system themes between dark and light
     set -l k9s_dir "$HOME/Library/Application Support/k9s"
     test (uname) = Linux; and set k9s_dir "$HOME/.config/k9s"
     mkdir -p "$k9s_dir/skins"
-    cp "$_dotfiles/k9s/skins/"*.yaml "$k9s_dir/skins/" 2>/dev/null
+    set -l k9s_skins "$_dotfiles/k9s/skins/"*.yaml
+    if set -q k9s_skins[1]
+        cp $k9s_skins "$k9s_dir/skins/" 2>/dev/null
+    end
     if test -f "$_dotfiles/k9s/config-base.yaml"
         set -l _k9s_tmp (mktemp)
         if grep -q "skin:" "$_dotfiles/k9s/config-base.yaml"

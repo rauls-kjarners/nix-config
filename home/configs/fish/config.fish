@@ -25,9 +25,9 @@ if status is-interactive
     # On macOS, switch_theme (below) overwrites this as a universal var (-Ux),
     # so it propagates live to open shells without a terminal restart.
     if test "$_switch_theme_active" = light
-        set -gx BAT_THEME Alucard
+        set -gx BAT_THEME gruvbox-light
     else
-        set -gx BAT_THEME Dracula
+        set -gx BAT_THEME gruvbox-dark
     end
 
     # Apply theme matching current OS dark/light mode.

@@ -1,28 +1,28 @@
 :root {
-  /* Default to Alucard (Light Theme) */
+  /* Default to Gruvbox Material Light (Hard Theme) */
   --tridactyl-font-family: monospace;
-  --tridactyl-bg: #fffbeb;
-  --tridactyl-fg: #1f1f1f;
+  --tridactyl-bg: #f9f5d7;
+  --tridactyl-fg: #514036;
 
   --tridactyl-status-font-size: 12px;
   --tridactyl-status-font-family: monospace;
   --tridactyl-status-font-bg: var(--tridactyl-cmdl-bg);
-  --tridactyl-status-border: 1px solid #644ac9;
+  --tridactyl-status-border: 1px solid #945e80;
   --tridactyl-status-border-radius: 4px;
 
   --tridactyl-header-font-size: 16px;
 
-  --tridactyl-of-fg: #1f1f1f;
-  --tridactyl-of-bg: #cfcfde;
+  --tridactyl-of-fg: #514036;
+  --tridactyl-of-bg: #f2e5bc;
 
-  --tridactyl-hintspan-fg: #fffbeb !important;
-  --tridactyl-hintspan-bg: #14710a !important;
+  --tridactyl-hintspan-fg: #f9f5d7 !important;
+  --tridactyl-hintspan-bg: #6c782e !important;
 
-  --tridactyl-hint-active-fg: #fffbeb;
-  --tridactyl-hint-active-bg: #a3144d;
-  --tridactyl-hint-active-outline: 1px solid #a3144d;
+  --tridactyl-hint-active-fg: #f9f5d7;
+  --tridactyl-hint-active-bg: #c14a4a;
+  --tridactyl-hint-active-outline: 1px solid #c14a4a;
 
-  --tridactyl-hint-bg: rgba(255, 251, 235, 0.75);
+  --tridactyl-hint-bg: rgba(249, 245, 215, 0.75);
   --tridactyl-hint-outline: 1px solid var(--tridactyl-hintspan-bg);
 
   --tridactyl-cmdl-font-size: 16px;
@@ -31,39 +31,39 @@
   --tridactyl-border-radius: 4px;
 
   /* Custom variables for hardcoded element colors */
-  --my-link-color: #036a96;
-  --my-code-bg: #cfcfde;
-  --my-cmdl-border: #644ac9;
-  --my-focused-bg: #a3144d;
-  --my-focused-fg: #fffbeb;
+  --my-link-color: #45707a;
+  --my-code-bg: #f2e5bc;
+  --my-cmdl-border: #945e80;
+  --my-focused-bg: #c14a4a;
+  --my-focused-fg: #f9f5d7;
   --my-shadow: rgba(0, 0, 0, 0.2);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Override with Dracula (Dark Theme) */
-    --tridactyl-bg: #282a36;
-    --tridactyl-fg: #f8f8f2;
+    /* Override with Gruvbox Material Dark (Hard Theme) */
+    --tridactyl-bg: #1d2021;
+    --tridactyl-fg: #e2cca9;
 
-    --tridactyl-status-border: 1px solid #bd93f9;
+    --tridactyl-status-border: 1px solid #d3869b;
 
-    --tridactyl-of-fg: #f8f8f2;
-    --tridactyl-of-bg: #44475a;
+    --tridactyl-of-fg: #e2cca9;
+    --tridactyl-of-bg: #514036;
 
-    --tridactyl-hintspan-fg: #282a36 !important;
-    --tridactyl-hintspan-bg: #50fa7b !important;
+    --tridactyl-hintspan-fg: #1d2021 !important;
+    --tridactyl-hintspan-bg: #a9b665 !important;
 
-    --tridactyl-hint-active-fg: #282a36;
-    --tridactyl-hint-active-bg: #ff79c6;
-    --tridactyl-hint-active-outline: 1px solid #ff79c6;
+    --tridactyl-hint-active-fg: #1d2021;
+    --tridactyl-hint-active-bg: #d3869b;
+    --tridactyl-hint-active-outline: 1px solid #d3869b;
 
-    --tridactyl-hint-bg: rgba(40, 42, 54, 0.75);
+    --tridactyl-hint-bg: rgba(29, 32, 33, 0.75);
 
-    --my-link-color: #8be9fd;
-    --my-code-bg: #44475a;
-    --my-cmdl-border: #bd93f9;
-    --my-focused-bg: #ff79c6;
-    --my-focused-fg: #282a36;
+    --my-link-color: #7daea3;
+    --my-code-bg: #514036;
+    --my-cmdl-border: #d3869b;
+    --my-focused-bg: #d3869b;
+    --my-focused-fg: #1d2021;
     --my-shadow: #000000;
   }
 }
@@ -158,25 +158,3 @@
   color-scheme: only light; /* Overridden below for dark mode */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root #cmdline_iframe {
-    color-scheme: only dark;
-  }
-}
-
-:root .TridactylStatusIndicator {
-  position: fixed !important;
-  bottom: 10px !important;
-  right: 10px !important;
-  padding: 5px !important;
-}
-
-#completions .focused {
-  background: var(--my-focused-bg);
-  color: var(--my-focused-fg);
-}
-
-#completions .focused .url {
-  background: var(--my-focused-bg);
-  color: var(--my-focused-fg);
-}

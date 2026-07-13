@@ -1,0 +1,211 @@
+{
+  "document": {
+    "block_prefix": "\n",
+    "block_suffix": "\n",
+    "color": "#514036",
+    "margin": 2
+  },
+  "block_quote": {
+    "indent": 1,
+    "indent_token": "\u2502 ",
+    "color": "#7c6f64"
+  },
+  "heading": {
+    "block_suffix": "\n",
+    "color": "#945e80",
+    "bold": true
+  },
+  "h1": {
+    "prefix": " ",
+    "suffix": " ",
+    "color": "#f9f5d7",
+    "background_color": "#945e80",
+    "bold": true
+  },
+  "h2": {
+    "prefix": "## "
+  },
+  "h3": {
+    "prefix": "### "
+  },
+  "h4": {
+    "prefix": "#### "
+  },
+  "h5": {
+    "prefix": "##### "
+  },
+  "h6": {
+    "prefix": "###### ",
+    "bold": false
+  },
+  "text": {},
+  "strikethrough": {
+    "crossed_out": true
+  },
+  "emph": {
+    "italic": true
+  },
+  "strong": {
+    "bold": true
+  },
+  "hr": {
+    "color": "#f2e5bc",
+    "format": "\n--------\n"
+  },
+  "item": {
+    "block_prefix": "\u2022 "
+  },
+  "enumeration": {
+    "block_prefix": ". "
+  },
+  "task": {
+    "ticked": "[\u2713] ",
+    "unticked": "[ ] "
+  },
+  "link": {
+    "color": "#4c7a5d",
+    "underline": true
+  },
+  "link_text": {
+    "color": "#945e80",
+    "bold": true
+  },
+  "image": {
+    "color": "#945e80",
+    "underline": true
+  },
+  "image_text": {
+    "color": "#945e80",
+    "format": "Image: {{.text}} \u2192"
+  },
+  "code": {
+    "prefix": " ",
+    "suffix": " ",
+    "color": "#945e80",
+    "background_color": "#f2e5bc"
+  },
+  "code_block": {
+    "color": "#514036",
+    "margin": 2,
+    "chroma": {
+      "text": {
+        "color": "#514036"
+      },
+      "error": {
+        "color": "#514036",
+        "background_color": "#c14a4a"
+      },
+      "comment": {
+        "color": "#7c6f64"
+      },
+      "comment_preproc": {
+        "color": "#c14a4a"
+      },
+      "keyword": {
+        "color": "#945e80"
+      },
+      "keyword_reserved": {
+        "color": "#945e80"
+      },
+      "keyword_namespace": {
+        "color": "#945e80"
+      },
+      "keyword_type": {
+        "color": "#4c7a5d"
+      },
+      "operator": {
+        "color": "#945e80"
+      },
+      "punctuation": {
+        "color": "#514036"
+      },
+      "name": {
+        "color": "#514036"
+      },
+      "name_builtin": {
+        "color": "#4c7a5d"
+      },
+      "name_tag": {
+        "color": "#945e80"
+      },
+      "name_attribute": {
+        "color": "#6c782e"
+      },
+      "name_class": {
+        "color": "#4c7a5d",
+        "underline": true,
+        "bold": true
+      },
+      "name_constant": {
+        "color": "#945e80"
+      },
+      "name_decorator": {
+        "color": "#6c782e"
+      },
+      "name_exception": {
+        "color": "#c14a4a"
+      },
+      "name_function": {
+        "color": "#6c782e"
+      },
+      "name_other": {
+        "color": "#514036"
+      },
+      "literal": {
+        "color": "#b47109"
+      },
+      "literal_number": {
+        "color": "#945e80"
+      },
+      "literal_date": {
+        "color": "#b47109"
+      },
+      "literal_string": {
+        "color": "#b47109"
+      },
+      "literal_string_escape": {
+        "color": "#945e80"
+      },
+      "generic_deleted": {
+        "color": "#c14a4a"
+      },
+      "generic_emph": {
+        "italic": true
+      },
+      "generic_inserted": {
+        "color": "#6c782e"
+      },
+      "generic_strong": {
+        "bold": true
+      },
+      "generic_subheading": {
+        "color": "#4c7a5d"
+      },
+      "generic_heading": {
+        "color": "#514036",
+        "bold": true
+      },
+      "generic_output": {
+        "color": "#514036"
+      },
+      "generic_prompt": {
+        "color": "#7c6f64"
+      },
+      "generic_error": {
+        "color": "#c14a4a"
+      },
+      "generic_traceback": {
+        "color": "#c14a4a"
+      },
+      "background": {
+        "background_color": "#f9f5d7"
+      }
+    }
+  },
+  "table": {},
+  "definition_list": {},
+  "definition_term": {},
+  "definition_description": {
+    "block_prefix": "\n\ud83e\udc36 "
+  }
+}

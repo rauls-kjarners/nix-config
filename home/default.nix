@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  inputs,
   ...
 }:
 
@@ -138,29 +137,48 @@ in
       "hyperlinks-file-link-format" = "file://{path}:{line}";
       "line-numbers" = true;
 
-      "dracula" = {
-        "syntax-theme" = "Dracula";
-        "plus-style" = "syntax #003800";
-        "minus-style" = "syntax #3f0001";
-        "plus-emph-style" = "syntax #007000";
-        "minus-emph-style" = "syntax #700000";
-        "plus-non-emph-style" = "syntax #003800";
-        "minus-non-emph-style" = "syntax #3f0001";
-        "line-numbers-zero-style" = "#6272A4";
-        "line-numbers-left-style" = "#6272A4";
-        "line-numbers-right-style" = "#6272A4";
-        "line-numbers-minus-style" = "#FF5555";
-        "line-numbers-plus-style" = "#50FA7B";
+      "gruvbox-material-dark" = {
+        "syntax-theme" = "gruvbox-dark";
+        "commit-style" = "#d8a657 bold";
+        "commit-decoration-style" = "#504945 box";
+        "file-style" = "#e2cca9 bold";
+        "file-decoration-style" = "#d8a657 ul";
+        "hunk-header-file-style" = "#7daea3";
+        "hunk-header-line-number-style" = "#d8a657";
+        "hunk-header-decoration-style" = "#504945 box";
+        "minus-style" = "syntax #3c1f1e";
+        "minus-non-emph-style" = "syntax #3c1f1e";
+        "minus-emph-style" = "syntax #4c2f2e";
+        "minus-empty-line-marker-style" = "syntax #3c1f1e";
+        "line-numbers-minus-style" = "#ea6962";
+        "plus-style" = "syntax #283b31";
+        "plus-non-emph-style" = "syntax #283b31";
+        "plus-emph-style" = "syntax #384b41";
+        "plus-empty-line-marker-style" = "syntax #283b31";
+        "line-numbers-plus-style" = "#a9b665";
+        "line-numbers-zero-style" = "#504945";
       };
 
-      "alucard" = {
-        "syntax-theme" = "Alucard";
-        "plus-style" = "syntax #d8f0d4";
-        "minus-style" = "syntax #f7ddd9";
-        "plus-emph-style" = "syntax #b0e0aa";
-        "minus-emph-style" = "syntax #f0bdb5";
-        "plus-non-emph-style" = "syntax #d8f0d4";
-        "minus-non-emph-style" = "syntax #f7ddd9";
+      "gruvbox-material-light" = {
+        "syntax-theme" = "gruvbox-light";
+        "commit-style" = "#b47109 bold";
+        "commit-decoration-style" = "#e2cca9 box";
+        "file-style" = "#514036 bold";
+        "file-decoration-style" = "#b47109 ul";
+        "hunk-header-decoration-style" = "#e2cca9 box";
+        "hunk-header-file-style" = "#45707a";
+        "hunk-header-line-number-style" = "#b47109";
+        "minus-style" = "syntax #f0c6c6";
+        "minus-non-emph-style" = "syntax #f0c6c6";
+        "minus-emph-style" = "syntax #eeb6b6";
+        "minus-empty-line-marker-style" = "syntax #f0c6c6";
+        "line-numbers-minus-style" = "#c14a4a";
+        "plus-style" = "syntax #d8e5cd";
+        "plus-non-emph-style" = "syntax #d8e5cd";
+        "plus-emph-style" = "syntax #c8d5bd";
+        "plus-empty-line-marker-style" = "syntax #d8e5cd";
+        "line-numbers-plus-style" = "#6c782e";
+        "line-numbers-zero-style" = "#e2cca9";
       };
     };
   };
@@ -173,17 +191,6 @@ in
 
   # Enable font management
   fonts.fontconfig.enable = true;
-
-  # Enable Bat and natively load custom themes
-  programs.bat = {
-    enable = true;
-    themes = {
-      "Alucard" = {
-        src = ./configs/bat/themes;
-        file = "Alucard.tmTheme";
-      };
-    };
-  };
 
   # Enable Fish shell and native plugins
   programs.fish = {

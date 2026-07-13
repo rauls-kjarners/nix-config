@@ -13,40 +13,9 @@ config.scrollback_lines = 10000
 local appearance = wezterm.gui and wezterm.gui.get_appearance() or "Dark"
 
 if appearance:find("Dark") then
-    config.color_scheme = "Dracula (Official)"
+    config.color_scheme = "GruvboxDarkHard"
 else
-    -- Define Alucard inline for Light mode since WezTerm doesn't have it natively
-    config.color_schemes = {
-        ["Alucard"] = {
-            background = "#FFFBEB",
-            foreground = "#1F1F1F",
-            cursor_bg = "#A3144D",
-            cursor_fg = "#FFFBEB",
-            selection_bg = "#CFCFDE",
-            selection_fg = "#1F1F1F",
-            ansi = {
-                "#1F1F1F",
-                "#CB3A2A",
-                "#14710A",
-                "#846E15",
-                "#644AC9",
-                "#A3144D",
-                "#036A96",
-                "#CFCFDE",
-            },
-            brights = {
-                "#6C664B",
-                "#D74C3D",
-                "#198D0C",
-                "#9E841A",
-                "#7862D0",
-                "#BF185A",
-                "#047FB4",
-                "#FFFBEB",
-            },
-        },
-    }
-    config.color_scheme = "Alucard"
+    config.color_scheme = "GruvboxLight"
 end
 
 -- Window appearance

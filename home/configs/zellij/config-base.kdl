@@ -4,12 +4,12 @@
 // Everything else uses Zellij defaults.
 // =============================================================================
 
-// Theme: dracula is built-in. "alucard" is a custom theme in themes/alucard.kdl
+// Theme: tokyonight_night is in themes/tokyonight_night.kdl
 // switch_theme fish function updates this line via sed for live hot-swap.
-theme "dracula"
+theme "gruvbox-dark"
 
-theme_dark "dracula"
-theme_light "alucard"
+theme_dark "tokyonight_night"
+theme_light "tokyonight_day"
 
 // UI
 default_layout "compact"
