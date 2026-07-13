@@ -107,7 +107,6 @@
       "suspicious-package"
       "visual-studio-code"
       "wezterm@nightly"
-      "zed"
     ];
     masApps = {
       "Dimify" = 6758863439;
