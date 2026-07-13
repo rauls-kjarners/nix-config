@@ -30,6 +30,13 @@ setup-nvim:
 	fi
 	ln -s "{{justfile_directory()}}/../nvim-config" "$HOME/.config/nvim"
 
+# Wipe Neovim data and cache directories (fixes state corruption)
+clean-nvim:
+	#!/usr/bin/env bash
+	rm -rf ~/.local/share/nvim
+	rm -rf ~/.local/state/nvim
+	rm -rf ~/.cache/nvim
+
 # Bootstrap development environment
 bootstrap-ai:
 	mise install
@@ -42,7 +49,7 @@ bootstrap-ai:
 symlink-windows:
 	#!/usr/bin/env bash
 	echo "Triggering Windows UAC Prompt to create native symlinks..."
-	powershell.exe -NoProfile -Command "Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile -Command \"New-Item -ItemType SymbolicLink -Path ''\$env:USERPROFILE\.wezterm.lua'' -Target ''\\\\wsl.localhost\\NixOS\\home\\nixos\\Projects\\nix-config\\home\\configs\\wezterm\\wezterm.lua'' -Force; New-Item -ItemType SymbolicLink -Path ''\$env:USERPROFILE\.mozilla\\native-messaging-hosts\\tridactyl.json'' -Target ''\\\\wsl.localhost\\NixOS\\home\\nixos\\Projects\\nix-config\\home\\configs\\tridactyl\\tridactyl.json'' -Force; Write-Host ''Symlinks created successfully! Press any key to close...''; \$null = \$Host.UI.RawUI.ReadKey(''NoEcho,IncludeKeyDown'')\"'"
+	powershell.exe -NoProfile -Command "Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile -Command \"New-Item -ItemType SymbolicLink -Path (\$env:USERPROFILE + ''\.wezterm.lua'') -Target ''\\\\wsl.localhost\\NixOS\\home\\nixos\\Projects\\nix-config\\home\\configs\\wezterm\\wezterm.lua'' -Force; New-Item -ItemType SymbolicLink -Path (\$env:USERPROFILE + ''\.tridactyl\tridactyl.json'') -Target ''\\\\wsl.localhost\\NixOS\\home\\nixos\\Projects\\nix-config\\home\\configs\\tridactyl\\tridactyl.json'' -Force; Remove-Item -Path (\$env:USERPROFILE + ''\.tridactyl\themes'') -Recurse -Force -ErrorAction SilentlyContinue; New-Item -ItemType SymbolicLink -Path (\$env:USERPROFILE + ''\.tridactyl\themes'') -Target ''\\\\wsl.localhost\\NixOS\\home\\nixos\\Projects\\nix-config\\home\\configs\\tridactyl\\themes'' -Force; Write-Host ''Symlinks created successfully! Press any key to close...''; \$null = \$Host.UI.RawUI.ReadKey(''NoEcho,IncludeKeyDown'')\"'"
 
 # Download and install JetBrains Mono Nerd Font natively on Windows
 install-fonts-windows:
@@ -82,10 +89,3 @@ dev:
 # Garbage-collect generations older than 14 days
 gc:
 	nix-collect-garbage --delete-older-than 14d
-
-# Wipe Neovim data and cache directories (fixes state corruption)
-clean-nvim:
-	#!/usr/bin/env bash
-	rm -rf ~/.local/share/nvim
-	rm -rf ~/.local/state/nvim
-	rm -rf ~/.cache/nvim

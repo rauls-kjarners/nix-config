@@ -59,17 +59,14 @@ To effortlessly sync them, run **`just symlink-windows`** from inside WSL. It wi
 
 _Note for Tridactyl Users:_
 
-1. **Native Messenger**: After running the justfile symlink, run `:installnative` in the browser and execute the downloaded script on Windows (bypassing execution policies if necessary):
+1. **Native Messenger**: On a fresh install, run `:installnative` in the browser and execute the downloaded script on Windows FIRST. This downloads the required executables. Once installed, run **`just symlink-windows`** to automatically symlink the manifest and `themes/` directory directly to Nix configuration.
 
    ```powershell
    powershell -ExecutionPolicy Bypass -File "$env:TEMP\tridactyl_installnative.ps1" -Tag 1.24.6
    ```
 
-2. **Apply Custom Theme (Firefox/Zen Browser Workaround)**: Firefox/Zen Browser (Windows) often fails to load local custom CSS themes because it ignores standard Mozilla registry paths. To ensure the `system` colorscheme works, run `:set customthemes` to open Tridactyl Preferences, and paste the contents of `home\configs\tridactyl\themes\system.css` as a JSON dictionary into the `customthemes` setting box:
-
-   ```json
-   { "system": ":root { ... }" }
-   ```
+2. **Apply Custom Theme**: While `just symlink-windows` attempts to sync the `themes/` directory, Tridactyl on Windows often fails to read custom themes via symlinks properly natively. To bypass this, you must apply the custom theme using a direct JSON injection command.
+   Open the generated `home/configs/tridactyl/themes/system-theme.md` file, copy the command block, and paste it directly into the Tridactyl command line.
 
 ### macOS GUI Apps
 

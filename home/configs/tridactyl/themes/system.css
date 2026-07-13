@@ -1,28 +1,32 @@
 :root {
-  /* Default to Gruvbox Material Light (Hard Theme) */
+  /* Gruvbox Material Dark (Hard Theme) with Mix FG */
   --tridactyl-font-family: monospace;
-  --tridactyl-bg: #f9f5d7;
-  --tridactyl-fg: #514036;
+  --tridactyl-bg: #1d2021;
+  --tridactyl-fg: #e2cca9;
+  --tridactyl-cmdl-bg: #1d2021;
+  --tridactyl-cmdl-fg: #e2cca9;
+  --tridactyl-cmplt-bg: #1d2021;
+  --tridactyl-cmplt-fg: #e2cca9;
 
   --tridactyl-status-font-size: 12px;
   --tridactyl-status-font-family: monospace;
   --tridactyl-status-font-bg: var(--tridactyl-cmdl-bg);
-  --tridactyl-status-border: 1px solid #945e80;
+  --tridactyl-status-border: 1px solid #89b482;
   --tridactyl-status-border-radius: 4px;
 
   --tridactyl-header-font-size: 16px;
 
-  --tridactyl-of-fg: #514036;
-  --tridactyl-of-bg: #f2e5bc;
+  --tridactyl-of-fg: #e2cca9;
+  --tridactyl-of-bg: #282828;
 
-  --tridactyl-hintspan-fg: #f9f5d7 !important;
-  --tridactyl-hintspan-bg: #6c782e !important;
+  --tridactyl-hintspan-fg: #1d2021 !important;
+  --tridactyl-hintspan-bg: #a9b665 !important;
 
-  --tridactyl-hint-active-fg: #f9f5d7;
-  --tridactyl-hint-active-bg: #c14a4a;
-  --tridactyl-hint-active-outline: 1px solid #c14a4a;
+  --tridactyl-hint-active-fg: #1d2021;
+  --tridactyl-hint-active-bg: #e78a4e;
+  --tridactyl-hint-active-outline: 1px solid #e78a4e;
 
-  --tridactyl-hint-bg: rgba(249, 245, 215, 0.75);
+  --tridactyl-hint-bg: rgba(29, 32, 33, 0.75);
   --tridactyl-hint-outline: 1px solid var(--tridactyl-hintspan-bg);
 
   --tridactyl-cmdl-font-size: 16px;
@@ -31,42 +35,15 @@
   --tridactyl-border-radius: 4px;
 
   /* Custom variables for hardcoded element colors */
-  --my-link-color: #45707a;
-  --my-code-bg: #f2e5bc;
-  --my-cmdl-border: #945e80;
-  --my-focused-bg: #c14a4a;
-  --my-focused-fg: #f9f5d7;
-  --my-shadow: rgba(0, 0, 0, 0.2);
+  --my-link-color: #7daea3;
+  --my-code-bg: #282828;
+  --my-cmdl-border: #89b482;
+  --my-focused-bg: #7daea3;
+  --my-focused-fg: #1d2021;
+  --my-shadow: #000000;
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Override with Gruvbox Material Dark (Hard Theme) */
-    --tridactyl-bg: #1d2021;
-    --tridactyl-fg: #e2cca9;
-
-    --tridactyl-status-border: 1px solid #d3869b;
-
-    --tridactyl-of-fg: #e2cca9;
-    --tridactyl-of-bg: #514036;
-
-    --tridactyl-hintspan-fg: #1d2021 !important;
-    --tridactyl-hintspan-bg: #a9b665 !important;
-
-    --tridactyl-hint-active-fg: #1d2021;
-    --tridactyl-hint-active-bg: #d3869b;
-    --tridactyl-hint-active-outline: 1px solid #d3869b;
-
-    --tridactyl-hint-bg: rgba(29, 32, 33, 0.75);
-
-    --my-link-color: #7daea3;
-    --my-code-bg: #514036;
-    --my-cmdl-border: #d3869b;
-    --my-focused-bg: #d3869b;
-    --my-focused-fg: #1d2021;
-    --my-shadow: #000000;
-  }
-}
 
 :root.TridactylOwnNamespace {
   scrollbar-width: thin;
@@ -155,6 +132,9 @@
   z-index: 2147483647 !important;
   width: 80% !important;
   filter: drop-shadow(0px 0px 20px var(--my-shadow)) !important;
-  color-scheme: only light; /* Overridden below for dark mode */
+  color-scheme: dark;
 }
 
+body {
+  flex-direction: column !important;
+}
