@@ -17,7 +17,6 @@ in
 
     # Git & CLI Utilities
     gnumake
-    git
     lazygit
     bat
     eza
@@ -99,6 +98,7 @@ in
   ];
 
   programs.home-manager.enable = true;
+  programs.man.generateCaches = false;
 
   # Native Git Configuration
   programs.git = {
@@ -229,9 +229,7 @@ in
       }
     ];
     interactiveShellInit = ''
-      if test -f ${./configs/fish/config.fish}
-        source ${./configs/fish/config.fish}
-      end
+      source ${./configs/fish/config.fish}
     '';
   };
 
@@ -284,8 +282,7 @@ in
 
   home.sessionVariables = {
     FLAKE_PATH = flakePath;
-    HOMEBREW_NO_AUTO_UPDATE = "1";
   };
 
-  home.stateVersion = "23.11";
+  home.stateVersion = "26.11";
 }

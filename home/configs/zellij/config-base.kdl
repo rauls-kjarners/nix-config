@@ -4,12 +4,12 @@
 // Everything else uses Zellij defaults.
 // =============================================================================
 
-// Theme: tokyonight_night is in themes/tokyonight_night.kdl
-// switch_theme fish function updates this line via sed for live hot-swap.
+// switch_theme fish function updates the `theme` line below for live hot-swap.
+// theme_dark/theme_light are used by zellij's set-dark-theme/set-light-theme actions.
 theme "gruvbox-dark"
 
-theme_dark "tokyonight_night"
-theme_light "tokyonight_day"
+theme_dark "gruvbox-dark"
+theme_light "gruvbox-light"
 
 // UI
 default_layout "compact"

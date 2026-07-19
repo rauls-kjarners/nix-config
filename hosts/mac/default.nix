@@ -3,7 +3,6 @@
 {
   # Let nix-darwin manage the Nix installation and daemon.
   nix.enable = true;
-  nix.package = pkgs.nix;
 
   # binary caches, trusted users, store optimisation
   nix.settings = {
@@ -36,14 +35,12 @@
     options = "--delete-older-than 14d";
   };
 
-  # Workaround for broken darwin-manual-html on nixos-unstable
-  documentation.enable = false;
-  documentation.doc.enable = false;
-
-  # Disable the uninstaller to work around the darwin-manual-html breakage.
-  # The uninstaller internally evaluates a minimal nix-darwin system where
-  # docs are enabled by default, hitting the removed --toc-depth flag.
-  system.tools.darwin-uninstaller.enable = false;
+  # Workaround for broken darwin-manual-html on nixos-unstable (when nix-darwin
+  # does NOT follow nixpkgs). Currently disabled — nix-darwin follows nixpkgs now.
+  # If builds break, remove inputs.nixpkgs.follows from flake.nix and uncomment:
+  # documentation.enable = false;
+  # documentation.doc.enable = false;
+  # system.tools.darwin-uninstaller.enable = false;
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;
@@ -80,7 +77,6 @@
     };
     taps = [
       "buo/cask-upgrade"
-      "github/gh"
       "cormacrelf/tap"
     ];
     brews = [

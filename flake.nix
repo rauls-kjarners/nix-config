@@ -11,12 +11,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Nix-Darwin for macOS — intentionally NOT following our nixpkgs so
-    # nix-darwin uses its own pinned nixpkgs for internal builds
-    # (darwin-manual-html etc.). System packages are overridden below via
-    # nixpkgs.pkgs = pkgsMac.
+    # Nix-Darwin for macOS. Now following our nixpkgs — if internal builds break
+    # (darwin-manual-html etc.), remove the follows and re-enable workarounds in
+    # hosts/mac/default.nix. System packages use nixpkgs.pkgs = pkgsMac below.
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # NixOS-WSL
