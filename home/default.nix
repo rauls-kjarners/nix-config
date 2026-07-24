@@ -246,11 +246,11 @@ in
       ${
         if pkgs.stdenv.isDarwin then
           ''
-            set editorcmd /opt/homebrew/bin/wezterm start --always-new-process -- ${pkgs.fish}/bin/fish -lc 'nvim "%f"; open -a Zen'
+            set editorcmd /opt/homebrew/bin/wezterm start --always-new-process -- ${pkgs.fish}/bin/fish -lc 'nvim "%f"; open -a Firefox'
           ''
         else if pkgs.stdenv.isLinux then
           ''
-            set editorcmd powershell.exe -NoProfile -WindowStyle Hidden -Command "& '\\wsl.localhost\NixOS\home\nixos\Projects\nix-config\home\configs\tridactyl\wsl_nvim.bat' '%f'"
+            set editorcmd powershell.exe -NoProfile -WindowStyle Hidden -Command "& '\\\\wsl.localhost\\NixOS\\home\\nixos\\Projects\\nix-config\\home\\configs\\tridactyl\\wsl_nvim.bat' '%f'"
           ''
         else
           ""

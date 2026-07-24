@@ -16,3 +16,5 @@ if exist "%LOCK_FILE%" (
     ping 127.0.0.1 -n 2 > nul
     goto waitloop
 )
+
+powershell.exe -NoProfile -WindowStyle Hidden -Command "(New-Object -ComObject wscript.shell).AppActivate('Firefox') > $null"

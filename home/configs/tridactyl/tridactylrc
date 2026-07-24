@@ -14,7 +14,7 @@ keymap ; l
 bind K tabnext
 bind L tabprev
 
-" Unbind / so Zen can handle it natively for Find in Page
+" Unbind / so Firefox can handle it natively for Find in Page
 unbind /
 
 " 4. History Navigation (LazyVim style)

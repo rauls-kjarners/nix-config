@@ -50,6 +50,7 @@ symlink-windows:
 	#!/usr/bin/env bash
 	echo "Triggering Windows UAC Prompt to create native symlinks..."
 	powershell.exe -NoProfile -Command "Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile -Command \"New-Item -ItemType SymbolicLink -Path (\$env:USERPROFILE + ''\.wezterm.lua'') -Target ''\\\\wsl.localhost\\NixOS\\home\\nixos\\Projects\\nix-config\\home\\configs\\wezterm\\wezterm.lua'' -Force; New-Item -ItemType SymbolicLink -Path (\$env:USERPROFILE + ''\.tridactyl\tridactyl.json'') -Target ''\\\\wsl.localhost\\NixOS\\home\\nixos\\Projects\\nix-config\\home\\configs\\tridactyl\\tridactyl.json'' -Force; Remove-Item -Path (\$env:USERPROFILE + ''\.tridactyl\themes'') -Recurse -Force -ErrorAction SilentlyContinue; New-Item -ItemType SymbolicLink -Path (\$env:USERPROFILE + ''\.tridactyl\themes'') -Target ''\\\\wsl.localhost\\NixOS\\home\\nixos\\Projects\\nix-config\\home\\configs\\tridactyl\\themes'' -Force; Write-Host ''Symlinks created successfully! Press any key to close...''; \$null = \$Host.UI.RawUI.ReadKey(''NoEcho,IncludeKeyDown'')\"'"
+	WIN_HOME=$(wslpath "$(powershell.exe -NoProfile -Command 'Write-Host -NoNewline $env:USERPROFILE')") && rm -f "$WIN_HOME/_tridactylrc" && cp ~/.config/tridactyl/tridactylrc "$WIN_HOME/_tridactylrc"
 
 # Download and install JetBrains Mono Nerd Font natively on Windows
 install-fonts-windows:

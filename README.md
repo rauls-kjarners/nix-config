@@ -46,7 +46,7 @@ To provide a seamless, `topgrade`-like experience while adhering to strict Nix d
 - **`just check`**: Run `nix flake check` — exercises nixfmt, statix, deadnix, and shellcheck via the pre-commit check output.
 - **`just clean-nvim`**: Wipes Neovim data and cache directories (`~/.local/share/nvim`, etc.) to quickly fix state corruption, while leaving the config symlink intact.
 - **`just bootstrap-ai`**: A one-time command that runs `mise install`, natively loads OMP plugins (`pyright`, `intelephense`), and injects custom AI skills.
-- **`just symlink-windows`**: A purely automated Windows bootstrapping command. From WSL, it triggers a native Windows UAC Administrator prompt on the desktop to automatically generate UNC symlinks for WezTerm and Tridactyl (Firefox/Zen Browser).
+- **`just symlink-windows`**: A purely automated Windows bootstrapping command. From WSL, it triggers a native Windows UAC Administrator prompt on the desktop to automatically generate UNC symlinks for WezTerm and Tridactyl (Firefox).
 - **`just install-fonts-windows`**: Automatically reaches into the Windows host, fetches the latest JetBrains Mono Nerd Font from GitHub, and natively installs it into the Windows Registry.
 
 ## 🖥️ Host Terminals & Theme Switching

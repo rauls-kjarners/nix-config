@@ -41,7 +41,6 @@
   --my-focused-bg: #7daea3;
   --my-focused-fg: #1d2021;
   --my-shadow: #000000;
-  color-scheme: dark;
 }
 
 
@@ -135,6 +134,3 @@
   color-scheme: dark;
 }
 
-body {
-  flex-direction: column !important;
-}

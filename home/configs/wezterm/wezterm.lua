@@ -14,8 +14,16 @@ local appearance = wezterm.gui and wezterm.gui.get_appearance() or "Dark"
 
 if appearance:find("Dark") then
     config.color_scheme = "GruvboxDarkHard"
+    config.colors = {
+        background = "#1d2021",
+        foreground = "#e2cca9",
+    }
 else
     config.color_scheme = "GruvboxLight"
+    config.colors = {
+        background = "#f9f5d7",
+        foreground = "#514036",
+    }
 end
 
 -- Window appearance
