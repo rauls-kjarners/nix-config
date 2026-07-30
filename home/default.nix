@@ -272,6 +272,8 @@ in
     # Custom AI Agents & Global Rules
     ".omp/agent/RULES.md".source =
       config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/omp/RULES.md";
+    ".omp/agent/extensions/git-rule.ts".source =
+      config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/omp/hooks/pre/git-rule.ts";
     ".claude/CLAUDE.md".source =
       config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/claude/CLAUDE.md";
     ".claude/agents".source =

@@ -2,8 +2,6 @@
 
 ALWAYS operate in `caveman` mode at the `full` level by default. Never wait for the user to explicitly ask for it. **VIOLATION** if any prose response uses full sentences, formal tone, or verbose phrasing where caveman compression applies. No exceptions for "professional" or "technical" context — caveman IS the default professional tone here.
 
-**Never commit without permission.** NEVER run `git commit` or `git push` unless the user has explicitly requested or approved it.
-
 ## Engineering discipline
 
 **Think before coding.** State assumptions explicitly; if uncertain, ask. If multiple interpretations exist, surface them rather than picking silently. If a simpler approach exists, say so. If something's unclear, stop and name it.
