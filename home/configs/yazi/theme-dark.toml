@@ -2,15 +2,15 @@
 # NOTE: can be combined with tmTheme (sublime colorshceme file) for preview code highlight
 # syntect_theme = "path/to/tmTheme"
 
-cwd = { fg = "#e2cca9", italic = true }
+cwd = { fg = "#ebdbb2", italic = true }
 
 # Hovered
-hovered         = { bg = "#514036" }
-preview_hovered = { bg = "#514036" }
+hovered         = { bg = "#3c3836" }
+preview_hovered = { bg = "#3c3836" }
 
 # Find
 find_keyword  = { fg = "#1d2021", bg = "#e78a4e", bold = true }
-find_position = { fg = "#89b482", bg = "#514036", bold = true }
+find_position = { fg = "#89b482", bg = "#3c3836", bold = true }
 
 # Marker
 marker_copied   = { fg = "#a9b665", bg = "#a9b665" }
@@ -43,14 +43,14 @@ unset_main  = { fg = "#1d2021", bg = "#d3869b", bold = true }
 unset_alt   = { fg = "#d3869b", bg = "#504945" }
 
 [status]
-overall   = { fg = "#e2cca9", bg = "#1d2021" }
+overall   = { fg = "#ebdbb2", bg = "#1d2021" }
 sep_left  = { open = "", close = "" }
 sep_right = { open = "", close = "" }
 
 # Progress
-progress_label  = { fg = "#e2cca9", bold = true }
-progress_normal = { fg = "#7daea3", bg = "#514036" }
-progress_error  = { fg = "#ea6962", bg = "#514036" }
+progress_label  = { fg = "#ebdbb2", bold = true }
+progress_normal = { fg = "#7daea3", bg = "#3c3836" }
+progress_error  = { fg = "#ea6962", bg = "#3c3836" }
 
 # Permissions
 perm_type  = { fg = "#7daea3" }
@@ -61,8 +61,8 @@ perm_sep   = { fg = "#504945" }
 
 [pick]
 border   = { fg = "#89b482" }
-active   = { fg = "#e2cca9",  bg = "#504945" }
-inactive = { fg = "#e2cca9" }
+active   = { fg = "#ebdbb2",  bg = "#504945" }
+inactive = { fg = "#ebdbb2" }
 
 # Input
 [input]
@@ -74,8 +74,8 @@ selected = { bg = "#504945" }
 # Completion
 [cmp]
 border   = { fg = "#89b482" }
-active   = { fg = "#e2cca9", bg = "#504945" }
-inactive = { fg = "#e2cca9" }
+active   = { fg = "#ebdbb2", bg = "#504945" }
+inactive = { fg = "#ebdbb2" }
 
 icon_file    = ""
 icon_folder  = ""
@@ -85,7 +85,7 @@ icon_command = ""
 [tasks]
 border  = { fg = "#89b482" }
 title   = { fg = "#89b482" }
-hovered = { fg = "#e2cca9", bg = "#504945" }
+hovered = { fg = "#ebdbb2", bg = "#504945" }
 
 # Which
 [which]
@@ -127,8 +127,8 @@ icon_info = ""
 on      = { fg = "#a9b665" }
 run     = { fg = "#d3869b" }
 desc    = { fg = "#7daea3" }
-hovered = { bg = "#514036" }
-footer  = { fg = "#e2cca9", bg = "#1d2021" }
+hovered = { bg = "#3c3836" }
+footer  = { fg = "#ebdbb2", bg = "#1d2021" }
 
 [filetype]
 
@@ -155,6 +155,6 @@ rules = [
 
 	# Fallback
 	{ name = "*/", fg = "#7daea3" },
-	{ name = "*", fg = "#e2cca9" }
+	{ name = "*", fg = "#ebdbb2" }
 ]
     

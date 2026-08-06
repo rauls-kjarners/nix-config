@@ -10,7 +10,7 @@ gui:
       - "#a9b665"
       - bold
     inactiveBorderColor:
-      - "#e2cca9"
+      - "#ebdbb2"
     searchingActiveBorderColor:
       - "#e78a4e"
       - bold
@@ -31,4 +31,4 @@ gui:
     unstagedChangesColor:
       - "#ea6962"
     defaultFgColor:
-      - "#e2cca9"
+      - "#ebdbb2"

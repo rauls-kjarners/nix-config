@@ -39,31 +39,31 @@ function switch_theme --description "Switch system themes between dark and light
     # ---------------------------------------------------------------------------
     if test "$theme" = dark
         # Gruvbox Material Dark (Hard)
-        set -f p_normal e2cca9
+        set -f p_normal ebdbb2
         set -f p_command 89b482
         set -f p_keyword d3869b
         set -f p_quote d8a657
-        set -f p_redirect e2cca9
+        set -f p_redirect ebdbb2
         set -f p_end e78a4e
         set -f p_error ea6962
         set -f p_param 7daea3
         set -f p_comment 928374
         set -f p_match_bg 3c3836
         set -f p_sel_bg 504945
-        set -f p_search_fg e2cca9
+        set -f p_search_fg ebdbb2
         set -f p_operator e78a4e
         set -f p_escape d3869b
         set -f p_cwd 7daea3
         set -f p_cwd_root ea6962
         set -f p_autosugg 928374
         set -f p_user a9b665
-        set -f p_host e2cca9
+        set -f p_host ebdbb2
         set -f p_pager_desc 928374
-        set -f p_pager_prog_fg e2cca9
+        set -f p_pager_prog_fg ebdbb2
         set -f p_pager_prog_bg 3c3836
-        set -f p_pager_compl e2cca9
+        set -f p_pager_compl ebdbb2
         set -f p_pager_sel_bg 504945
-        set -f fzf_opts "--color=fg:#e2cca9,bg:#1d2021,hl:#89b482 --color=fg+:#e2cca9,bg+:#3c3836,hl+:#89b482 --color=info:#e78a4e,prompt:#89b482,pointer:#ea6962 --color=marker:#ea6962,spinner:#ea6962,header:#a9b665"
+        set -f fzf_opts "--color=fg:#ebdbb2,bg:#1d2021,hl:#89b482 --color=fg+:#ebdbb2,bg+:#3c3836,hl+:#89b482 --color=info:#e78a4e,prompt:#89b482,pointer:#ea6962 --color=marker:#ea6962,spinner:#ea6962,header:#a9b665"
         set -f h_pwd 7daea3
         set -f h_git a9b665
         set -f h_error ea6962
@@ -83,31 +83,31 @@ function switch_theme --description "Switch system themes between dark and light
         set -f glamour_style "$_dotfiles/glamour/gruvbox-material-dark.json"
     else
         # Gruvbox Material Light (Hard)
-        set -f p_normal 514036
+        set -f p_normal 3c3836
         set -f p_command 4c7a5d
         set -f p_keyword 945e80
         set -f p_quote b47109
-        set -f p_redirect 514036
+        set -f p_redirect 3c3836
         set -f p_end c35e0a
         set -f p_error c14a4a
         set -f p_param 45707a
         set -f p_comment 7c6f64
         set -f p_match_bg f2e5bc
         set -f p_sel_bg ebdbb2
-        set -f p_search_fg 514036
+        set -f p_search_fg 3c3836
         set -f p_operator c35e0a
         set -f p_escape 945e80
         set -f p_cwd 45707a
         set -f p_cwd_root c14a4a
         set -f p_autosugg 7c6f64
         set -f p_user 6c782e
-        set -f p_host 514036
+        set -f p_host 3c3836
         set -f p_pager_desc 7c6f64
-        set -f p_pager_prog_fg 514036
+        set -f p_pager_prog_fg 3c3836
         set -f p_pager_prog_bg f2e5bc
-        set -f p_pager_compl 514036
+        set -f p_pager_compl 3c3836
         set -f p_pager_sel_bg ebdbb2
-        set -f fzf_opts "--color=fg:#514036,bg:#f9f5d7,hl:#45707a --color=fg+:#514036,bg+:#ebdbb2,hl+:#45707a --color=info:#c35e0a,prompt:#4c7a5d,pointer:#c14a4a --color=marker:#c14a4a,spinner:#c14a4a,header:#6c782e"
+        set -f fzf_opts "--color=fg:#3c3836,bg:#f9f5d7,hl:#45707a --color=fg+:#3c3836,bg+:#ebdbb2,hl+:#45707a --color=info:#c35e0a,prompt:#4c7a5d,pointer:#c14a4a --color=marker:#c14a4a,spinner:#c14a4a,header:#6c782e"
         set -f h_pwd 45707a
         set -f h_git 6c782e
         set -f h_error c14a4a

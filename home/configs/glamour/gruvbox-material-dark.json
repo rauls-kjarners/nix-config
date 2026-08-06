@@ -2,7 +2,7 @@
   "document": {
     "block_prefix": "\n",
     "block_suffix": "\n",
-    "color": "#e2cca9",
+    "color": "#ebdbb2",
     "margin": 2
   },
   "block_quote": {
@@ -49,7 +49,7 @@
     "bold": true
   },
   "hr": {
-    "color": "#514036",
+    "color": "#3c3836",
     "format": "\n--------\n"
   },
   "item": {
@@ -82,17 +82,17 @@
     "prefix": " ",
     "suffix": " ",
     "color": "#d3869b",
-    "background_color": "#514036"
+    "background_color": "#3c3836"
   },
   "code_block": {
-    "color": "#e2cca9",
+    "color": "#ebdbb2",
     "margin": 2,
     "chroma": {
       "text": {
-        "color": "#e2cca9"
+        "color": "#ebdbb2"
       },
       "error": {
-        "color": "#e2cca9",
+        "color": "#ebdbb2",
         "background_color": "#ea6962"
       },
       "comment": {
@@ -117,10 +117,10 @@
         "color": "#d3869b"
       },
       "punctuation": {
-        "color": "#e2cca9"
+        "color": "#ebdbb2"
       },
       "name": {
-        "color": "#e2cca9"
+        "color": "#ebdbb2"
       },
       "name_builtin": {
         "color": "#89b482"
@@ -149,7 +149,7 @@
         "color": "#a9b665"
       },
       "name_other": {
-        "color": "#e2cca9"
+        "color": "#ebdbb2"
       },
       "literal": {
         "color": "#d8a657"
@@ -182,11 +182,11 @@
         "color": "#89b482"
       },
       "generic_heading": {
-        "color": "#e2cca9",
+        "color": "#ebdbb2",
         "bold": true
       },
       "generic_output": {
-        "color": "#e2cca9"
+        "color": "#ebdbb2"
       },
       "generic_prompt": {
         "color": "#928374"

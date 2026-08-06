@@ -2,7 +2,7 @@
   "document": {
     "block_prefix": "\n",
     "block_suffix": "\n",
-    "color": "#514036",
+    "color": "#3c3836",
     "margin": 2
   },
   "block_quote": {
@@ -85,14 +85,14 @@
     "background_color": "#f2e5bc"
   },
   "code_block": {
-    "color": "#514036",
+    "color": "#3c3836",
     "margin": 2,
     "chroma": {
       "text": {
-        "color": "#514036"
+        "color": "#3c3836"
       },
       "error": {
-        "color": "#514036",
+        "color": "#3c3836",
         "background_color": "#c14a4a"
       },
       "comment": {
@@ -117,10 +117,10 @@
         "color": "#945e80"
       },
       "punctuation": {
-        "color": "#514036"
+        "color": "#3c3836"
       },
       "name": {
-        "color": "#514036"
+        "color": "#3c3836"
       },
       "name_builtin": {
         "color": "#4c7a5d"
@@ -149,7 +149,7 @@
         "color": "#6c782e"
       },
       "name_other": {
-        "color": "#514036"
+        "color": "#3c3836"
       },
       "literal": {
         "color": "#b47109"
@@ -182,11 +182,11 @@
         "color": "#4c7a5d"
       },
       "generic_heading": {
-        "color": "#514036",
+        "color": "#3c3836",
         "bold": true
       },
       "generic_output": {
-        "color": "#514036"
+        "color": "#3c3836"
       },
       "generic_prompt": {
         "color": "#7c6f64"

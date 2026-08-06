@@ -1,12 +1,12 @@
 :root {
-  /* Gruvbox Material Dark (Hard Theme) with Mix FG */
+  /* Gruvbox Material Dark (Hard Theme) with Original FG */
   --tridactyl-font-family: monospace;
   --tridactyl-bg: #1d2021;
-  --tridactyl-fg: #e2cca9;
+  --tridactyl-fg: #ebdbb2;
   --tridactyl-cmdl-bg: #1d2021;
-  --tridactyl-cmdl-fg: #e2cca9;
+  --tridactyl-cmdl-fg: #ebdbb2;
   --tridactyl-cmplt-bg: #1d2021;
-  --tridactyl-cmplt-fg: #e2cca9;
+  --tridactyl-cmplt-fg: #ebdbb2;
 
   --tridactyl-status-font-size: 12px;
   --tridactyl-status-font-family: monospace;
@@ -16,7 +16,7 @@
 
   --tridactyl-header-font-size: 16px;
 
-  --tridactyl-of-fg: #e2cca9;
+  --tridactyl-of-fg: #ebdbb2;
   --tridactyl-of-bg: #282828;
 
   --tridactyl-hintspan-fg: #1d2021 !important;

@@ -3,7 +3,7 @@ local config = wezterm.config_builder()
 
 -- Font configuration
 config.font = wezterm.font("JetBrainsMono NF Medium")
-config.font_size = 13.0
+config.font_size = 14.0
 
 -- Basic aesthetics and cursor
 config.default_cursor_style = "BlinkingBar"
@@ -16,13 +16,13 @@ if appearance:find("Dark") then
     config.color_scheme = "GruvboxDarkHard"
     config.colors = {
         background = "#1d2021",
-        foreground = "#e2cca9",
+        foreground = "#ebdbb2",
     }
 else
     config.color_scheme = "GruvboxLight"
     config.colors = {
         background = "#f9f5d7",
-        foreground = "#514036",
+        foreground = "#3c3836",
     }
 end
 
@@ -30,6 +30,11 @@ end
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 1.0
 config.enable_tab_bar = false
+
+-- Windows lock-screen bug workaround
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+    config.front_end = "OpenGL"
+end
 
 -- Keybinds
 config.native_macos_fullscreen_mode = false

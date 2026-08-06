@@ -141,7 +141,7 @@ in
         "syntax-theme" = "gruvbox-dark";
         "commit-style" = "#d8a657 bold";
         "commit-decoration-style" = "#504945 box";
-        "file-style" = "#e2cca9 bold";
+        "file-style" = "#ebdbb2 bold";
         "file-decoration-style" = "#d8a657 ul";
         "hunk-header-file-style" = "#7daea3";
         "hunk-header-line-number-style" = "#d8a657";
@@ -162,10 +162,10 @@ in
       "gruvbox-material-light" = {
         "syntax-theme" = "gruvbox-light";
         "commit-style" = "#b47109 bold";
-        "commit-decoration-style" = "#e2cca9 box";
-        "file-style" = "#514036 bold";
+        "commit-decoration-style" = "#ebdbb2 box";
+        "file-style" = "#3c3836 bold";
         "file-decoration-style" = "#b47109 ul";
-        "hunk-header-decoration-style" = "#e2cca9 box";
+        "hunk-header-decoration-style" = "#ebdbb2 box";
         "hunk-header-file-style" = "#45707a";
         "hunk-header-line-number-style" = "#b47109";
         "minus-style" = "syntax #f0c6c6";
@@ -178,7 +178,7 @@ in
         "plus-emph-style" = "syntax #c8d5bd";
         "plus-empty-line-marker-style" = "syntax #d8e5cd";
         "line-numbers-plus-style" = "#6c782e";
-        "line-numbers-zero-style" = "#e2cca9";
+        "line-numbers-zero-style" = "#ebdbb2";
       };
     };
   };
