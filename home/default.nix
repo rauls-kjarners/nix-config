@@ -43,7 +43,6 @@ in
     imagemagick
     ghostscript
     mermaid-cli
-    tectonic
 
     # Data Processors
     jq
@@ -276,8 +275,10 @@ in
       config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/omp/hooks/pre/git-rule.ts";
     ".claude/CLAUDE.md".source =
       config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/claude/CLAUDE.md";
-    ".claude/agents".source =
-      config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/claude/agents";
+    ".claude/settings.json".source =
+      config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/claude/settings.json";
+    ".claude/hooks".source =
+      config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/claude/hooks";
     ".gemini/config/AGENTS.md".source =
       config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/antigravity/AGENTS.md";
   };
