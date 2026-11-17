@@ -267,6 +267,13 @@ in
   home.file = {
     ".local/bin/neotest-remote".source = ./configs/bin/neotest-remote;
     ".markdownlint-cli2.yaml".source = ./configs/markdownlint/.markdownlint-cli2.yaml;
+    "${
+      if pkgs.stdenv.isDarwin then
+        "Library/Application Support/lazygit/config.yml"
+      else
+        ".config/lazygit/config.yml"
+    }".source =
+      config.lib.file.mkOutOfStoreSymlink "${flakePath}/home/configs/lazygit/config.yml";
 
     # Custom AI Agents & Global Rules
     ".omp/agent/RULES.md".source =

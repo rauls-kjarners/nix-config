@@ -1,0 +1,74 @@
+keybinding:
+  universal:
+    prevItem-alt: 'l' # Up (Shifted from k)
+    nextItem-alt: 'k' # Down (Shifted from j)
+    prevBlock-alt: 'j' # Left / Previous Panel (Shifted from h)
+    nextBlock-alt: ';' # Right / Next Panel (Shifted from l)
+    scrollUpMain-alt1: 'L' # Scroll main panel up (Shifted from K)
+    scrollDownMain-alt1: 'K' # Scroll main panel down (Shifted from J)
+
+os:
+  editPreset: 'nvim'
+
+git:
+  diffRenderers:
+    - colorArg: always
+      command: 'delta --{{colorScheme}} --paging=never --features=gruvbox-material-{{colorScheme}}'
+
+gui:
+  showCommandLog: false
+  colorScheme: auto
+  darkTheme:
+    activeBorderColor:
+      - "#a9b665"
+      - bold
+    inactiveBorderColor:
+      - "#ebdbb2"
+    searchingActiveBorderColor:
+      - "#e78a4e"
+      - bold
+    optionsTextColor:
+      - "#928374"
+    selectedLineBgColor:
+      - "#504945"
+    inactiveViewSelectedLineBgColor:
+      - bold
+    cherryPickedCommitFgColor:
+      - "#928374"
+    cherryPickedCommitBgColor:
+      - "#7daea3"
+    markedBaseCommitFgColor:
+      - "#7daea3"
+    markedBaseCommitBgColor:
+      - "#d8a657"
+    unstagedChangesColor:
+      - "#ea6962"
+    defaultFgColor:
+      - "#ebdbb2"
+  lightTheme:
+    activeBorderColor:
+      - "#6c782e"
+      - bold
+    inactiveBorderColor:
+      - "#3c3836"
+    searchingActiveBorderColor:
+      - "#c35e0a"
+      - bold
+    optionsTextColor:
+      - "#7c6f64"
+    selectedLineBgColor:
+      - "#ebdbb2"
+    inactiveViewSelectedLineBgColor:
+      - bold
+    cherryPickedCommitFgColor:
+      - "#7c6f64"
+    cherryPickedCommitBgColor:
+      - "#45707a"
+    markedBaseCommitFgColor:
+      - "#45707a"
+    markedBaseCommitBgColor:
+      - "#b47109"
+    unstagedChangesColor:
+      - "#c14a4a"
+    defaultFgColor:
+      - "#3c3836"

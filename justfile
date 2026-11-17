@@ -14,6 +14,7 @@ update:
 		sudo nixos-rebuild switch --flake {{justfile_directory()}}#nixos-wsl; \
 	fi
 	mise up
+	mise exec -- skills update -g -y
 
 # Bootstrap Neovim configuration
 setup-nvim:

@@ -28,10 +28,6 @@ function switch_theme --description "Switch system themes between dark and light
     # Use the global user gitconfig (not the tracked dotfile repo copy)
     set -l gitconfig "$HOME/.gitconfig"
 
-    # Resolve lazygit config dir — macOS uses ~/Library/Application Support/lazygit,
-    # Linux uses ~/.config/lazygit. Ask lazygit itself; fall back if not on PATH.
-    set -l lazygit_dir (command -q lazygit; and lazygit --print-config-dir; or echo "$HOME/.config/lazygit")
-
     # ---------------------------------------------------------------------------
     # Palette — all color values in one place; branches below are code-only.
     # IMPORTANT: use set -f (function scope) not set -l (block scope) — block-scoped
@@ -72,7 +68,6 @@ function switch_theme --description "Switch system themes between dark and light
         set -f bat_theme gruvbox-dark
         set -f delta_feature gruvbox-material-dark
         set -f delta_dark true
-        set -f lazygit_theme "$_dotfiles/lazygit/theme-dark.yml"
         set -f lazydocker_theme "$_dotfiles/lazydocker/theme-dark.yml"
         set -f zellij_theme gruvbox-dark
         set -f yazi_theme "$_dotfiles/yazi/theme-dark.toml"
@@ -116,7 +111,6 @@ function switch_theme --description "Switch system themes between dark and light
         set -f bat_theme gruvbox-light
         set -f delta_feature gruvbox-material-light
         set -f delta_dark false
-        set -f lazygit_theme "$_dotfiles/lazygit/theme-light.yml"
         set -f lazydocker_theme "$_dotfiles/lazydocker/theme-light.yml"
         set -f zellij_theme gruvbox-light
         set -f yazi_theme "$_dotfiles/yazi/theme-light.toml"
@@ -189,12 +183,6 @@ function switch_theme --description "Switch system themes between dark and light
     _set_u hydro_color_error $h_error
     _set_u hydro_color_prompt $h_prompt
     _set_u hydro_color_duration $h_duration
-
-    # Lazygit theme
-    if test -f "$_dotfiles/lazygit/config-base.yml"
-        mkdir -p "$lazygit_dir"
-        cat "$_dotfiles/lazygit/config-base.yml" "$lazygit_theme" >"$lazygit_dir/config.yml"
-    end
 
     # Lazydocker theme
     if test -f "$_dotfiles/lazydocker/config-base.yml"
